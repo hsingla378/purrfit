@@ -22,26 +22,29 @@ export default function Hero() {
           as={Box}
           textAlign={"center"}
           spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: 20 }}
+          py={20}
         >
           <Image
             src="cartoon_cat.webp"
-            alt="Whiskers Bot"
+            alt="Purrfit Bot"
             boxSize="150px"
             mx="auto"
           />
           <Heading
             fontWeight={600}
-            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+            fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
             lineHeight={"110%"}
           >
             Meet
-            <Text as={"span"} color={"green.400"}>
-              {" Whiskers"}
+            <Text as={"span"} color={"rgba(0, 184, 29, 1)"}>
+              {" Purrfit"}
             </Text>
           </Heading>
-          <Text color={"gray.500"}>
-            Your kitty pal here to mix gaming fun with some healthy vibes! 
+          <Text color={"gray.500"} fontSize={"lg"}>
+            Discover a new level of gaming with Purrfit Bot! Seamlessly blend
+            your gaming passion with a healthier lifestyle. Set goals, receive
+            in-game health reminders, and track your progress as you play. Join
+            us and level up your life today!
           </Text>
           <Stack
             direction={"column"}
@@ -55,12 +58,13 @@ export default function Hero() {
               isExternal
             >
               <Button
-                colorScheme={"green"}
-                bg={"green.400"}
-                rounded={"full"}
-                px={6}
+                // colorScheme={"rgba(0, 184, 29, 1)"}
+                color={"white"}
+                bg={"rgba(0, 184, 29, 1)"}
+                rounded={"xl"}
+                p={6}
                 _hover={{
-                  bg: "green.500",
+                  bg: "rgba(0, 184, 29, .7)",
                 }}
               >
                 Add to Discord

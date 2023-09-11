@@ -35,17 +35,96 @@ const Feature = ({ text, icon, iconBg }) => {
 };
 
 export default function SingleFeature({ feature, index }) {
-  const { name, headline, description, image } = feature;
-  let bgColor = useColorModeValue("green.50", "green.900");
+  const { name, headline, description, image, id } = feature;
+  let bgColor = useColorModeValue("rgba(0, 184, 29, 1)", "rgba(0, 184, 29, 1)");
   return (
-    <Container maxW={"5xl"} py={12}>
-      <SimpleGrid
-        columns={{ base: 1, md: 2 }}
-        spacing={10}
-        alignItems={"center"}
+    <>
+      {/* For Desktop */}
+      <Container
+        maxW={"5xl"}
+        py={12}
+        id={id}
+        display={{ base: "none", md: "block" }}
       >
-        {console.log("index: ", index)}
-        {index % 2 === 0 ? (
+        <SimpleGrid
+          columns={{ base: 1, md: 2 }}
+          spacing={10}
+          alignItems={"center"}
+        >
+          {console.log("index: ", index)}
+          {index % 2 === 0 ? (
+            <>
+              <Flex>
+                <Image
+                  rounded={"md"}
+                  alt={"feature image"}
+                  src={image}
+                  objectFit={"cover"}
+                />
+              </Flex>
+              <Stack spacing={4}>
+                <Text
+                  textTransform={"uppercase"}
+                  color={"rgba(0, 184, 29, 1)"}
+                  fontWeight={600}
+                  fontSize={"1rem"}
+                  // bg={bgColor}
+                  py={2}
+                  alignSelf={"flex-start"}
+                  rounded={"md"}
+                >
+                  {name}
+                </Text>
+                <Heading fontSize={"2rem"}>{headline}</Heading>
+                <Text color={"gray.500"} fontSize={"lg"}>
+                  {description}
+                </Text>
+              </Stack>
+            </>
+          ) : (
+            <>
+              <Stack spacing={4}>
+                <Text
+                  textTransform={"uppercase"}
+                  color={"rgba(0, 184, 29, 1)"}
+                  fontWeight={600}
+                  fontSize={"1rem"}
+                  // bg={bgColor}
+                  py={2}
+                  alignSelf={"flex-start"}
+                  rounded={"md"}
+                >
+                  {name}
+                </Text>
+                <Heading fontSize={"2rem"}>{headline}</Heading>
+                <Text color={"gray.500"} fontSize={"lg"}>
+                  {description}
+                </Text>
+              </Stack>
+              <Flex>
+                <Image
+                  rounded={"md"}
+                  alt={"feature image"}
+                  src={image}
+                  objectFit={"cover"}
+                />
+              </Flex>
+            </>
+          )}
+        </SimpleGrid>
+      </Container>
+      {/* For Mobile */}
+      <Container
+        maxW={"5xl"}
+        p={12}
+        id={id}
+        display={{ base: "block", md: "none" }}
+      >
+        <SimpleGrid
+          columns={{ base: 1, md: 2 }}
+          spacing={10}
+          alignItems={"center"}
+        >
           <>
             <Flex>
               <Image
@@ -58,7 +137,7 @@ export default function SingleFeature({ feature, index }) {
             <Stack spacing={4}>
               <Text
                 textTransform={"uppercase"}
-                color={"green.500"}
+                color={"rgba(0, 184, 29, 1)"}
                 fontWeight={700}
                 fontSize={"xl"}
                 // bg={bgColor}
@@ -74,37 +153,8 @@ export default function SingleFeature({ feature, index }) {
               </Text>
             </Stack>
           </>
-        ) : (
-          <>
-            <Stack spacing={4}>
-              <Text
-                textTransform={"uppercase"}
-                color={"green.500"}
-                fontWeight={700}
-                fontSize={"xl"}
-                // bg={bgColor}
-                py={2}
-                alignSelf={"flex-start"}
-                rounded={"md"}
-              >
-                {name}
-              </Text>
-              <Heading>{headline}</Heading>
-              <Text color={"gray.500"} fontSize={"lg"}>
-                {description}
-              </Text>
-            </Stack>
-            <Flex>
-              <Image
-                rounded={"md"}
-                alt={"feature image"}
-                src={image}
-                objectFit={"cover"}
-              />
-            </Flex>
-          </>
-        )}
-      </SimpleGrid>
-    </Container>
+        </SimpleGrid>
+      </Container>
+    </>
   );
 }

@@ -16,6 +16,7 @@ import {
   useBreakpointValue,
   useDisclosure,
   Image,
+  Link,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -35,19 +36,20 @@ export default function Header() {
         {
           label: "Goal Setting",
           // subLabel: "Trending Design to inspire you",
-          href: "#",
+          href: "#goal-setting",
         },
         {
           label: "Reminders",
           // subLabel: "Up-and-coming Designers",
-          href: "#",
+          href: "#reminders",
         },
         {
           label: "Progress Tracking",
           // subLabel: "Up-and-coming Designers",
-          href: "#",
+          href: "#progress-tracking",
         },
       ],
+      href: "#features",
     },
     {
       label: "Dashboard",
@@ -90,6 +92,10 @@ export default function Header() {
       ],
     },
     {
+      label: "Our Team",
+      href: "#",
+    },
+    {
       label: "Login",
       className: "login-btn",
       href: "#",
@@ -102,32 +108,50 @@ export default function Header() {
     const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
     return (
-      <Stack direction={"row"} spacing={4}>
+      <Stack direction={"row"} spacing={4} maxW={"5xl"}>
         {NAV_ITEMS.map((navItem) => (
           <Box key={navItem.label}>
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
-                <Box
+                <Flex
                   as="a"
                   p={2}
                   href={navItem.href ?? "#"}
-                  fontSize={"lg"}
-                  fontWeight={500}
+                  fontSize={"1rem"}
+                  // fontWeight={500}
                   color={linkColor}
                   _hover={{
                     textDecoration: "none",
                     color: linkHoverColor,
                   }}
+                  alignItems={"center"}
                 >
-                  {!navItem.className && navItem.label}
-                </Box>
+                  {console.log("navItem", navItem)}
+
+                  <Text
+                    fontWeight={600}
+                    // color={useColorModeValue("gray.600", "gray.200")}
+                  >
+                    {!navItem.className && navItem.label}
+                  </Text>
+                  {navItem.children && (
+                    <Icon
+                      as={ChevronDownIcon}
+                      transition={"all .25s ease-in-out"}
+                      transform={isOpen ? "rotate(180deg)" : ""}
+                      w={6}
+                      h={6}
+                    />
+                  )}
+                </Flex>
               </PopoverTrigger>
 
               {navItem.children && (
                 <PopoverContent
                   border={0}
                   boxShadow={"xl"}
-                  bg={popoverContentBgColor}
+                  // bg={popoverContentBgColor}
+                  // backgroundColor={"rgba(38, 39, 38, 0.8)"}
                   p={4}
                   rounded={"xl"}
                   minW={"sm"}
@@ -155,13 +179,13 @@ export default function Header() {
         display={"block"}
         p={2}
         rounded={"md"}
-        _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+        _hover={{ bg: useColorModeValue("rgba(0, 184, 29, 1)", "gray.900") }}
       >
         <Stack direction={"row"} align={"center"}>
           <Box>
             <Text
               transition={"all .3s ease"}
-              _groupHover={{ color: "pink.400" }}
+              _groupHover={{ color: "rgba(0, 184, 29, 1)" }}
               fontWeight={500}
             >
               {label}
@@ -177,7 +201,12 @@ export default function Header() {
             align={"center"}
             flex={1}
           >
-            <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+            <Icon
+              color={"rgba(0, 184, 29, 1)"}
+              w={5}
+              h={5}
+              as={ChevronRightIcon}
+            />
           </Flex>
         </Stack>
       </Box>
@@ -187,7 +216,7 @@ export default function Header() {
   const MobileNav = () => {
     return (
       <Stack
-        bg={useColorModeValue("white", "gray.800")}
+        // bg={useColorModeValue("white", "gray.800")}
         p={4}
         display={{ md: "none" }}
       >
@@ -211,13 +240,14 @@ export default function Header() {
         <Flex
           my={4}
           as="a"
-          href={href ?? "#"}
+          // href={href ?? "#"}
           // justifyContent="space-between"
           alignItems="center"
           _hover={{
             textDecoration: "none",
           }}
           gap={2}
+          paddingLeft={4}
         >
           <Text
             fontWeight={600}
@@ -258,17 +288,16 @@ export default function Header() {
             <Button
               as={"a"}
               display={{ base: "none", md: "inline-flex" }}
-              fontSize={"lg"}
-              fontWeight={600}
-              // color={"white"}
-              colorScheme={"green"}
-              bg={"green.400"}
+              fontSize={"1rem"}
+              fontWeight={"bold"}
+              color={"white"}
+              bg={"#00B81D"}
               href={"#"}
               // _hover={{
-              //   bg: "green.500",
+              //   bg: "#00B81D",
               // }}
               _hover={{
-                bg: "pink.300",
+                bg: "rgba(0, 184, 29, .7)",
               }}
               rounded={"full"}
               px={8}
@@ -283,9 +312,18 @@ export default function Header() {
   };
 
   return (
-    <Box py={3} style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}>
+    <Box
+      py={3}
+      style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
+      maxW={{ base: "90%", md: "5xl" }}
+      m={"auto"}
+      mt={6}
+      borderRadius={"1rem"}
+      backgroundColor="rgba(38, 39, 38, 0.8)"
+    >
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
+        // bg={useColorModeValue("white", "gray.800")}
+        // backgroundColor="#262726"
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
@@ -296,9 +334,35 @@ export default function Header() {
         align={"center"}
       >
         <Flex
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+          align="center"
+          gap={2}
+        >
+          <Link href="/" textDecoration={"none !important"}>
+            <Flex gap={1} align="center">
+              <Image src="cartoon_cat.webp" alt="Purrfit Bot" boxSize="45px" />
+              <Text
+                textAlign={useBreakpointValue({ base: "center", md: "left" })}
+                // fontFamily={"heading"}
+                color={useColorModeValue("gray.800", "white")}
+                fontSize={"30px"}
+                fontWeight={600}
+              >
+                Purrfit
+              </Text>
+            </Flex>
+          </Link>
+
+          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <DesktopNav />
+          </Flex>
+        </Flex>
+        <Flex
           flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
+          // mr={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
+          justifyContent={"end"}
         >
           <IconButton
             onClick={onToggle}
@@ -309,53 +373,31 @@ export default function Header() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex
-          flex={{ base: 1 }}
-          justify={{ base: "center", md: "start" }}
-          align="center"
-          gap={2}
-        >
-          <Flex gap={1} align="center">
-            <Image src="cartoon_cat.webp" alt="Whiskers Bot" boxSize="45px" />
-            <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
-              // fontFamily={"heading"}
-              color={useColorModeValue("gray.800", "white")}
-              fontSize={"30px"}
-              fontWeight={600}
-            >
-              Whiskers
-            </Text>
-          </Flex>
-
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
-          </Flex>
-        </Flex>
 
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
+          display={{ base: "none", md: "block" }}
           spacing={6}
         >
           <Button
             as={"a"}
             display={{ base: "none", md: "inline-flex" }}
-            fontSize={"lg"}
-            fontWeight={600}
-            // color={"white"}
+            fontSize={"1rem"}
+            fontWeight={"bold"}
+            color={"white"}
             colorScheme={"green"}
-            bg={"green.400"}
+            bg={"#00B81D"}
             href={"#"}
             // _hover={{
-            //   bg: "green.500",
+            //   bg: "#00B81D",
             // }}
             _hover={{
-              bg: "pink.300",
+              bg: "rgba(0, 184, 29, .7)",
             }}
-            rounded={"full"}
-            px={8}
+            rounded={"xl"}
+            px={6}
           >
             {" "}
             Login
