@@ -6,7 +6,7 @@ export default function Features() {
   const features = [
     {
       name: "Goal Setting",
-      headline: "Paws and pick health spots! 🐾",
+      headline: "Paws and pick health spots!",
       description:
         "Browse whisker-twitching health options that purr-fectly fit you",
       image:
@@ -14,7 +14,7 @@ export default function Features() {
     },
     {
       name: "Reminders",
-      headline: "Tail-twitch to health! 🐱",
+      headline: "Tail-twitch to health!",
       description:
         "[Bot Name] will meow activity reminders while you're gaming, just the way you like it.",
       image:
@@ -22,7 +22,7 @@ export default function Features() {
     },
     {
       name: "Progress Tracking",
-      headline: "Climb the kitty tower of health! 🌟",
+      headline: "Climb the kitty tower of health!",
       description:
         "Collect shiny badges and climb higher with every playful activity you do!",
       image:
@@ -31,22 +31,21 @@ export default function Features() {
   ];
 
   return (
-    <Box>
+    <Box py={16}>
       <Stack
         spacing={4}
         as={Container}
         maxW={"3xl"}
         textAlign={"center"}
-        mt={4}
-        mb={8}
+        mb={16}
       >
         <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"}>
           Features
         </Heading>
-        <Text color={"gray.600"} fontSize={{ base: "sm", sm: "lg" }}>
+        {/* <Text color={"gray.600"} fontSize={{ base: "sm", sm: "lg" }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
           obcaecati ut cupiditate pariatur, dignissimos, placeat amet officiis.
-        </Text>
+        </Text> */}
       </Stack>
       {features.map((feature, index) => {
         return <SingleFeature key={index} index={index} feature={feature} />;

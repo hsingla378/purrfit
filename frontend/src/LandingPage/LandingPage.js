@@ -7,7 +7,9 @@ export default function LandingPage() {
   return (
     <>
       <Hero />
+      <hr />
       <Features />
+      <hr />
       <Team />
     </>
   );

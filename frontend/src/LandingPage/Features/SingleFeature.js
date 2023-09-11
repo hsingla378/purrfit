@@ -58,11 +58,11 @@ export default function SingleFeature({ feature, index }) {
             <Stack spacing={4}>
               <Text
                 textTransform={"uppercase"}
-                color={"green.400"}
-                fontWeight={600}
-                fontSize={"sm"}
-                bg={bgColor}
-                p={2}
+                color={"green.500"}
+                fontWeight={700}
+                fontSize={"xl"}
+                // bg={bgColor}
+                py={2}
                 alignSelf={"flex-start"}
                 rounded={"md"}
               >
@@ -79,11 +79,11 @@ export default function SingleFeature({ feature, index }) {
             <Stack spacing={4}>
               <Text
                 textTransform={"uppercase"}
-                color={"green.400"}
-                fontWeight={600}
-                fontSize={"sm"}
-                bg={bgColor}
-                p={2}
+                color={"green.500"}
+                fontWeight={700}
+                fontSize={"xl"}
+                // bg={bgColor}
+                py={2}
                 alignSelf={"flex-start"}
                 rounded={"md"}
               >

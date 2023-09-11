@@ -11,6 +11,7 @@ import {
   useColorModeValue,
   createIcon,
   Image,
+  Link,
 } from "@chakra-ui/react";
 
 export default function Hero() {
@@ -49,21 +50,26 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Button
-              colorScheme={"green"}
-              bg={"green.400"}
-              rounded={"full"}
-              px={6}
-              _hover={{
-                bg: "green.500",
-              }}
+            <Link
+              href="https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&permissions=8&scope=bot%20applications.commands"
+              isExternal
             >
-              Add to Discord
-            </Button>
-            <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
+              <Button
+                colorScheme={"green"}
+                bg={"green.400"}
+                rounded={"full"}
+                px={6}
+                _hover={{
+                  bg: "green.500",
+                }}
+              >
+                Add to Discord
+              </Button>
+            </Link>
+            {/* <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
               Learn Docs
-            </Button>
-            <Box>
+            </Button> */}
+            {/* <Box>
               <Icon
                 as={Arrow}
                 color={useColorModeValue("gray.800", "gray.300")}
@@ -82,7 +88,7 @@ export default function Hero() {
               >
                 It's free!
               </Text>
-            </Box>
+            </Box> */}
           </Stack>
         </Stack>
       </Container>
