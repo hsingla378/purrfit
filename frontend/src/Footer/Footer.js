@@ -67,7 +67,7 @@ export default function Footer() {
             flexDirection={{ base: "row", md: "column" }}
             gap={"2rem"}
           >
-            <Box as="a" href={"#"}>
+            <Box as="a" href={"#features"}>
               Features
             </Box>
             <Box as="a" href={"#"}>
@@ -75,6 +75,9 @@ export default function Footer() {
             </Box>
             <Box as="a" href={"#"}>
               Help
+            </Box>
+            <Box as="a" href={"#team"}>
+              Our Team
             </Box>
           </Stack>
         </Flex>

@@ -11,6 +11,8 @@ import {
   useColorModeValue,
   VisuallyHidden,
   Image,
+  Link,
+  Button,
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
@@ -70,9 +72,20 @@ export default function Footer2() {
             Purrfit
           </Text>
         </Flex>
-        <Text my={2}>© 2023 Purrfit. All rights reserved</Text>
-        <Stack direction={"row"} spacing={6} color={"white"}>
-          <SocialButton label={"Twitter"} href={"#"}>
+        <Stack direction={"row"} spacing={6} color={"white"} mr={"1rem"}>
+          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
+            Features
+          </Link>
+          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
+            Dashboard
+          </Link>
+          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
+            Help
+          </Link>
+          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
+            Our Team
+          </Link>
+          {/* <SocialButton label={"Twitter"} href={"#"}>
             <FaTwitter />
           </SocialButton>
           <SocialButton label={"YouTube"} href={"#"}>
@@ -80,8 +93,37 @@ export default function Footer2() {
           </SocialButton>
           <SocialButton label={"Instagram"} href={"#"}>
             <FaInstagram />
-          </SocialButton>
+          </SocialButton> */}
         </Stack>
+        {/* <Stack
+          flex={{ base: 1, md: 0 }}
+          justify={"flex-end"}
+          direction={"row"}
+          display={{ base: "none", md: "block" }}
+          spacing={6}
+        >
+          <Button
+            as={"a"}
+            display={{ base: "none", md: "inline-flex" }}
+            fontSize={"1rem"}
+            fontWeight={"bold"}
+            color={"white"}
+            colorScheme={"green"}
+            bg={"#00B81D"}
+            href={"#"}
+            // _hover={{
+            //   bg: "#00B81D",
+            // }}
+            _hover={{
+              bg: "rgba(0, 184, 29, .7)",
+            }}
+            rounded={"xl"}
+            px={6}
+          >
+            {" "}
+            Login
+          </Button>
+        </Stack> */}
       </Container>
     </Box>
   );

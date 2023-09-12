@@ -126,8 +126,6 @@ export default function Header() {
                   }}
                   alignItems={"center"}
                 >
-                  {console.log("navItem", navItem)}
-
                   <Text
                     fontWeight={600}
                     // color={useColorModeValue("gray.600", "gray.200")}

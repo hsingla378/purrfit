@@ -36,14 +36,16 @@ export default function MemberCard({
           w={"full"}
           //   bg={useColorModeValue("gray.100", "gray.700")}
         >
-          <Image
-            src={image}
+          <Box
+            // src={image}
             alt="Purrfit Bot"
+            backgroundColor={"gray"}
+            height={"100px"}
             width={"100px"}
             rounded={"full"}
             // boxSize="150px"
             mx="auto"
-          />
+          ></Box>
         </Flex>
         <Box mt={4} w={"full"}>
           <Heading fontSize={"1.75rem"} fontWeight={600}>

@@ -1,17 +1,19 @@
 import "./App.css";
-import LandingPage from "./LandingPage/LandingPage";
+import Layout from "./Layout";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Footer2 from "./Footer/Footer2";
+import LandingPage from "./LandingPage/LandingPage";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
       <LandingPage />
-      {/* <Footer /> */}
       <Footer2 />
-    </div>
+    </>
   );
 }
 
