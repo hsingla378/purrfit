@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
-    "@chakra-ui/react": "^2.8.1",
+    "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/open-sans": "^5.0.12",
@@ -44,6 +44,6 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.16.0"
   }
 }

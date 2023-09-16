@@ -25,10 +25,11 @@ export default function Hero() {
           py={20}
         >
           <Image
-            src="cartoon_cat.webp"
+            src="hero_img2.png"
             alt="Purrfit Bot"
-            boxSize="150px"
+            // boxSize="150px"
             mx="auto"
+            width={"250px"}
           />
           <Heading
             fontWeight={600}

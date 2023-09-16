@@ -6,7 +6,7 @@ import MemberCard from "./MemberCard";
 export default function Team() {
   let teamData = [
     {
-      image: "Jiaqian_Yu.jpeg",
+      image: "jiaqian_yu.png",
       first_name: "Jiaqian",
       last_name: "Yu",
       name: "Jiaqian Yu",
@@ -14,7 +14,7 @@ export default function Team() {
       linkedin: "https://www.linkedin.com/in/cypm/",
     },
     {
-      image: "Mitchell_Law.jpeg",
+      image: "mitchell_law.png",
       first_name: "Mitchell",
       last_name: "Law",
       name: "Mitchell Law",
@@ -22,7 +22,7 @@ export default function Team() {
       linkedin: "https://www.linkedin.com/in/mitchellowenlaw/",
     },
     {
-      image: "Shubham_Aggarwal.jpeg",
+      image: "shubham_aggarwal.png",
       first_name: "Shubham",
       last_name: "Aggarwal",
       name: "Shubham Aggarwal",
@@ -30,7 +30,7 @@ export default function Team() {
       linkedin: "https://www.linkedin.com/in/shubham-aggarwal-654ab521a/",
     },
     {
-      image: "himanshu_singla.jpg",
+      image: "himanshu_singla.png",
       first_name: "Himanshu",
       last_name: "Singla",
       name: "Himanshu Singla",
@@ -39,7 +39,7 @@ export default function Team() {
     },
 
     {
-      image: "Esther_Fischer.jpeg",
+      image: "esther_fischer.png",
       first_name: "Esther",
       last_name: "Fischer",
       name: "Esther Fischer",

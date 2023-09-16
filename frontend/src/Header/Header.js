@@ -16,7 +16,8 @@ import {
   useBreakpointValue,
   useDisclosure,
   Image,
-  Link,
+  Link as ChakraLink,
+  LinkProps,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -25,6 +26,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import "./Header.css";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -36,17 +38,17 @@ export default function Header() {
         {
           label: "Goal Setting",
           // subLabel: "Trending Design to inspire you",
-          href: "#goal-setting",
+          href: "/#goal-setting",
         },
         {
           label: "Reminders",
           // subLabel: "Up-and-coming Designers",
-          href: "#reminders",
+          href: "/#reminders",
         },
         {
           label: "Progress Tracking",
           // subLabel: "Up-and-coming Designers",
-          href: "#progress-tracking",
+          href: "/#progress-tracking",
         },
       ],
       href: "#features",
@@ -90,6 +92,7 @@ export default function Header() {
           href: "#",
         },
       ],
+      href: "/help",
     },
     {
       label: "Our Team",
@@ -113,35 +116,36 @@ export default function Header() {
           <Box key={navItem.label}>
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
-                <Flex
-                  as="a"
-                  p={2}
-                  href={navItem.href ?? "#"}
-                  fontSize={"1rem"}
-                  // fontWeight={500}
-                  color={linkColor}
-                  _hover={{
-                    textDecoration: "none",
-                    color: linkHoverColor,
-                  }}
-                  alignItems={"center"}
-                >
-                  <Text
-                    fontWeight={600}
-                    // color={useColorModeValue("gray.600", "gray.200")}
+                <ReactRouterLink to={navItem.href ?? "#"}>
+                  <Flex
+                    as="a"
+                    p={2}
+                    fontSize={"1rem"}
+                    // fontWeight={500}
+                    color={linkColor}
+                    _hover={{
+                      textDecoration: "none",
+                      color: linkHoverColor,
+                    }}
+                    alignItems={"center"}
                   >
-                    {!navItem.className && navItem.label}
-                  </Text>
-                  {navItem.children && (
-                    <Icon
-                      as={ChevronDownIcon}
-                      transition={"all .25s ease-in-out"}
-                      transform={isOpen ? "rotate(180deg)" : ""}
-                      w={6}
-                      h={6}
-                    />
-                  )}
-                </Flex>
+                    <Text
+                      fontWeight={600}
+                      // color={useColorModeValue("gray.600", "gray.200")}
+                    >
+                      {!navItem.className && navItem.label}
+                    </Text>
+                    {navItem.children && (
+                      <Icon
+                        as={ChevronDownIcon}
+                        transition={"all .25s ease-in-out"}
+                        transform={isOpen ? "rotate(180deg)" : ""}
+                        w={6}
+                        h={6}
+                      />
+                    )}
+                  </Flex>
+                </ReactRouterLink>
               </PopoverTrigger>
 
               {navItem.children && (
@@ -279,9 +283,11 @@ export default function Header() {
           >
             {children &&
               children.map((child) => (
-                <Box as="a" key={child.label} py={2} href={child.href}>
-                  {child.label}
-                </Box>
+                <ReactRouterLink to={child.href}>
+                  <Box as="a" key={child.label} py={2}>
+                    {child.label}
+                  </Box>
+                </ReactRouterLink>
               ))}
             <Button
               as={"a"}
@@ -337,10 +343,10 @@ export default function Header() {
           align="center"
           gap={2}
         >
-          <Link href="/" textDecoration={"none !important"}>
-            <Flex gap={1} align="center">
-              <Image src="cartoon_cat.webp" alt="Purrfit Bot" boxSize="45px" />
-              <Text
+          <ReactRouterLink to={"/"}>
+            <Flex gap={1} align="center" alignItems={"center"}>
+              <Image src="purrfit_logo.png" alt="Purrfit Bot" />
+              {/* <Text
                 textAlign={useBreakpointValue({ base: "center", md: "left" })}
                 // fontFamily={"heading"}
                 color={useColorModeValue("gray.800", "white")}
@@ -348,9 +354,9 @@ export default function Header() {
                 fontWeight={600}
               >
                 Purrfit
-              </Text>
+              </Text> */}
             </Flex>
-          </Link>
+          </ReactRouterLink>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />

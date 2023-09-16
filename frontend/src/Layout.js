@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
-import Footer2 from "./Footer/Footer2";
+import Footer from "./Footer/Footer2";
+import Footer2 from "./Footer/Footer";
 
 export default function Layout({ children }) {
   return (

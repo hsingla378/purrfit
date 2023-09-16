@@ -3,7 +3,6 @@ import { Icon } from "@chakra-ui/icon";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Heading, Link, Stack, Text } from "@chakra-ui/layout";
 import React from "react";
-import { AiFillLinkedin } from "react-icons/ai";
 
 export default function MemberCard({
   image,
@@ -36,14 +35,16 @@ export default function MemberCard({
           w={"full"}
           //   bg={useColorModeValue("gray.100", "gray.700")}
         >
+        {console.log(image)}
           <Box
-            // src={image}
-            alt="Purrfit Bot"
-            backgroundColor={"gray"}
-            height={"100px"}
-            width={"100px"}
-            rounded={"full"}
+            src={image}
+            alt={name}
+            // backgroundColor={"gray"}
+            // height={"100px"}
+            // width={"100px"}
+            // rounded={"full"}
             // boxSize="150px"
+            // boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
             mx="auto"
           ></Box>
         </Flex>
