@@ -26,7 +26,6 @@ export default function GetStarted() {
         maxW={"5xl"}
         textAlign={"left"}
         mb={12}
-        id="features"
       >
         <Heading
           fontSize={{ base: "2xl", sm: "3xl" }}
@@ -64,7 +63,6 @@ export default function GetStarted() {
         as={Container}
         maxW={"5xl"}
         textAlign={"left"}
-        id="features"
       >
         {" "}
         <Heading

@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer2";
 import LandingPage from "./LandingPage/LandingPage";
 import Help from "./Help/Help";
+import Dashboard from "./Dashboard/Dashboard";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/help" element={<Help />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );

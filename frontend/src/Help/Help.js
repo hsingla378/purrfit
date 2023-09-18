@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/layout";
@@ -15,6 +15,22 @@ import Commands from "./Commands";
 import FAQ from "./FAQ";
 
 export default function Help() {
+  const [currentTab, setCurrentTab] = useState("get-started");
+  const hash = window.location.hash.substring(1);
+
+
+  useEffect(() => {
+
+    const tabMapping = {
+      "get-started": "get-started",
+      "commands": "commands",
+      "faq": "faq",
+    };
+
+    setCurrentTab(tabMapping[hash] || "get-started");
+  }, [hash]);
+
+  console.log("current tab is " + currentTab);
   return (
     <>
       <Header />
@@ -25,7 +41,6 @@ export default function Help() {
           maxW={"5xl"}
           textAlign={"left"}
           mb={12}
-          id="features"
         >
           <Heading fontSize={{ base: "2xl", sm: "3xl" }} fontWeight={"600"}>
             Help Center
@@ -41,17 +56,17 @@ export default function Help() {
           maxW={"5xl"}
           mb={12}
           textAlign={"left"}
-          id="features"
+
         >
           <Tabs position="relative" variant="unstyled" my={12}>
-            <TabList>
-              <Tab w={"100%"} fontSize={"lg"} fontWeight={500}>
+            <TabList borderBottom={"2px solid gray"} pb={4}>
+              <Tab w={"100%"} fontSize={"lg"} fontWeight={500} id="get-started">
                 Get Started
               </Tab>
-              <Tab w={"100%"} fontSize={"lg"} fontWeight={500}>
+              <Tab w={"100%"} fontSize={"lg"} fontWeight={500} id="commands">
                 Commands
               </Tab>
-              <Tab w={"100%"} fontSize={"lg"} fontWeight={500}>
+              <Tab w={"100%"} fontSize={"lg"} fontWeight={500} id="faq">
                 FAQ
               </Tab>
             </TabList>

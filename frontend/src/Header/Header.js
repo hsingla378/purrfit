@@ -26,7 +26,8 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import "./Header.css";
-import { Link as ReactRouterLink } from "react-router-dom";
+// import { Link as ReactRouterLink } from "react-router-dom";
+import { Link } from "@chakra-ui/react";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -51,7 +52,7 @@ export default function Header() {
           href: "/#progress-tracking",
         },
       ],
-      href: "#features",
+      href: "/#features",
     },
     {
       label: "Dashboard",
@@ -72,6 +73,7 @@ export default function Header() {
           href: "#",
         },
       ],
+      href: "/dashboard",
     },
     {
       label: "Help",
@@ -79,24 +81,24 @@ export default function Header() {
         {
           label: "Get Started",
           // subLabel: "Find your dream design job",
-          href: "#",
+          href: "/help#get-started",
         },
         {
           label: "Commands",
           // subLabel: "An exclusive list for contract work",
-          href: "#",
+          href: "/help#commands",
         },
         {
           label: "FAQs",
           // subLabel: "An exclusive list for contract work",
-          href: "#",
+          href: "/help#faq",
         },
       ],
       href: "/help",
     },
     {
       label: "Our Team",
-      href: "#",
+      href: "#team",
     },
     {
       label: "Login",
@@ -104,6 +106,20 @@ export default function Header() {
       href: "#",
     },
   ];
+
+  const handleLinkClick = (event, href) => {
+    event.preventDefault();
+
+    // scrollToSection(href);
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const DesktopNav = () => {
     const linkColor = useColorModeValue("gray.600", "gray.200");
@@ -116,7 +132,7 @@ export default function Header() {
           <Box key={navItem.label}>
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
-                <ReactRouterLink to={navItem.href ?? "#"}>
+                <Link href={navItem.href ?? "#"}>
                   <Flex
                     as="a"
                     p={2}
@@ -145,7 +161,7 @@ export default function Header() {
                       />
                     )}
                   </Flex>
-                </ReactRouterLink>
+                </Link>
               </PopoverTrigger>
 
               {navItem.children && (
@@ -283,11 +299,11 @@ export default function Header() {
           >
             {children &&
               children.map((child) => (
-                <ReactRouterLink to={child.href}>
-                  <Box as="a" key={child.label} py={2}>
+                <Link href={child.href} key={child.label}>
+                  <Box as="a" py={2}>
                     {child.label}
                   </Box>
-                </ReactRouterLink>
+                </Link>
               ))}
             <Button
               as={"a"}
@@ -343,7 +359,7 @@ export default function Header() {
           align="center"
           gap={2}
         >
-          <ReactRouterLink to={"/"}>
+          <Link href={"/"}>
             <Flex gap={1} align="center" alignItems={"center"}>
               <Image src="purrfit_logo.png" alt="Purrfit Bot" />
               {/* <Text
@@ -356,7 +372,7 @@ export default function Header() {
                 Purrfit
               </Text> */}
             </Flex>
-          </ReactRouterLink>
+          </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />

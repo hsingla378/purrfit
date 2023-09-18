@@ -39,14 +39,16 @@ export default function FAQ() {
       lineHeight={"1.8em"}
     >
       <Accordion allowToggle>
-        {faqList.map((faq) => {
+        {faqList.map((faq, index) => {
           return (
             <AccordionItem
+              key={index}
               my={4}
               border={"none"}
               bg={"#303130"}
               rounded={"2xl"}
               p={3}
+              style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
             >
               <h2>
                 <AccordionButton>

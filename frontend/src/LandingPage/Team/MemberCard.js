@@ -35,8 +35,7 @@ export default function MemberCard({
           w={"full"}
           //   bg={useColorModeValue("gray.100", "gray.700")}
         >
-        {console.log(image)}
-          <Box
+          <Image
             src={image}
             alt={name}
             // backgroundColor={"gray"}
@@ -46,7 +45,7 @@ export default function MemberCard({
             // boxSize="150px"
             // boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
             mx="auto"
-          ></Box>
+          ></Image>
         </Flex>
         <Box mt={4} w={"full"}>
           <Heading fontSize={"1.75rem"} fontWeight={600}>

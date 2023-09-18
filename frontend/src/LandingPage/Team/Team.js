@@ -68,9 +68,10 @@ export default function Team() {
 
       <Container maxW={"7xl"} mt={12}>
         <Flex flexWrap="wrap" gridGap={6} justify="center">
-          {teamData.map((member) => {
+          {teamData.map((member, index) => {
             return (
               <MemberCard
+                key={index}
                 first_name={member.first_name}
                 last_name={member.last_name}
                 name={member.name}

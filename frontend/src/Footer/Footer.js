@@ -73,17 +73,17 @@ export default function Footer() {
           </Text> */}
         </Flex>
         <Stack direction={"row"} spacing={6} color={"white"} mr={"1rem"}>
-          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
+          <Link href={"/#features"} fontWeight={"500"} fontSize={"lg"}>
             Features
           </Link>
-          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
+          <Link href={"/dashboard"} fontWeight={"500"} fontSize={"lg"}>
             Dashboard
           </Link>
-          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
+          <Link href={"/help"} fontWeight={"500"} fontSize={"lg"}>
             Help
           </Link>
-          <Link to={"#"} fontWeight={"500"} fontSize={"lg"}>
-            Our Team
+          <Link href={"/#team"} fontWeight={"500"} fontSize={"lg"}>
+            Team
           </Link>
           {/* <SocialButton label={"Twitter"} href={"#"}>
             <FaTwitter />

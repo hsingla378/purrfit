@@ -44,29 +44,34 @@ export default function Commands() {
   return (
     <Box mt={16} color={"gray.400"} fontSize={{ base: "sm", sm: "lg" }}>
       {" "}
-      {commandList.map((commandObj) => {
+      {commandList.map((commandObj, index) => {
         return (
           <Flex
+            key={index}
             spacing={4}
             maxW={"100%"}
             mb={12}
-            id="features"
             my={6}
             bg={"#303130"}
             rounded={"2xl"}
             p={2}
             alignItems={"center"}
+            style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
           >
             <Text
               fontSize={{ base: "sm", lg: "lg" }}
               fontWeight={"600"}
               color={"gray.100"}
               p={3}
-              w={"15%"}
+              w={{ base: "30%", lg: "15%" }}
             >
               {commandObj.command}
             </Text>
-            <Text fontSize={{ base: "sm", lg: "lg" }} p={3} w={"85%"}>
+            <Text
+              fontSize={{ base: "sm", lg: "lg" }}
+              p={3}
+              w={{ base: "70%", sm: "85%" }}
+            >
               {commandObj.desc}
             </Text>
           </Flex>

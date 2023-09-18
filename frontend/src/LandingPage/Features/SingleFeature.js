@@ -51,7 +51,6 @@ export default function SingleFeature({ feature, index }) {
           spacing={10}
           alignItems={"center"}
         >
-          {console.log("index: ", index)}
           {index % 2 === 0 ? (
             <>
               <Flex>
