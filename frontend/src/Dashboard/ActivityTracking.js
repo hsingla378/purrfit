@@ -74,7 +74,7 @@ export default function Dashboard() {
             <ChakraLink
               as={ReactRouterLink}
               to="/dashboard"
-              className="active-link"
+              className="non-active-link"
             >
               Overview
             </ChakraLink>
@@ -95,7 +95,7 @@ export default function Dashboard() {
             <ChakraLink
               as={ReactRouterLink}
               to="/activity"
-              className="non-active-link"
+              className="active-link"
             >
               Activity Tracking
             </ChakraLink>
@@ -112,8 +112,6 @@ export default function Dashboard() {
           </Text>
           <Flex
             mb={6}
-            flexDirection={{ base: "column", md: "row" }}
-            gap={{ base: "3rem", md: "" }}
             justifyContent={"space-between"}
             mx={4}
             alignItems={"stretch"}

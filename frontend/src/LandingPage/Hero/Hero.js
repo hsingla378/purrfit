@@ -22,7 +22,7 @@ export default function Hero() {
           as={Box}
           textAlign={"center"}
           spacing={{ base: 8, md: 10 }}
-          py={20}
+          pb={20}
         >
           <Image
             src="hero_img2.png"

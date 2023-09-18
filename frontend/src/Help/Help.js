@@ -18,13 +18,11 @@ export default function Help() {
   const [currentTab, setCurrentTab] = useState("get-started");
   const hash = window.location.hash.substring(1);
 
-
   useEffect(() => {
-
     const tabMapping = {
       "get-started": "get-started",
-      "commands": "commands",
-      "faq": "faq",
+      commands: "commands",
+      faq: "faq",
     };
 
     setCurrentTab(tabMapping[hash] || "get-started");
@@ -34,14 +32,8 @@ export default function Help() {
   return (
     <>
       <Header />
-      <Box pt={16}>
-        <Stack
-          spacing={4}
-          as={Container}
-          maxW={"5xl"}
-          textAlign={"left"}
-          mb={12}
-        >
+      <Box>
+        <Stack spacing={4} as={Container} maxW={"5xl"} textAlign={"left"}>
           <Heading fontSize={{ base: "2xl", sm: "3xl" }} fontWeight={"600"}>
             Help Center
           </Heading>
@@ -54,19 +46,36 @@ export default function Help() {
           spacing={4}
           as={Container}
           maxW={"5xl"}
-          mb={12}
+          my={12}
           textAlign={"left"}
-
         >
           <Tabs position="relative" variant="unstyled" my={12}>
             <TabList borderBottom={"2px solid gray"} pb={4}>
-              <Tab w={"100%"} fontSize={"lg"} fontWeight={500} id="get-started">
+              <Tab
+                w={"100%"}
+                fontSize={"lg"}
+                fontWeight={500}
+                id="get-started"
+                _selected={{ color: "#00B81D" }}
+              >
                 Get Started
               </Tab>
-              <Tab w={"100%"} fontSize={"lg"} fontWeight={500} id="commands">
+              <Tab
+                w={"100%"}
+                fontSize={"lg"}
+                fontWeight={500}
+                id="commands"
+                _selected={{ color: "#00B81D" }}
+              >
                 Commands
               </Tab>
-              <Tab w={"100%"} fontSize={"lg"} fontWeight={500} id="faq">
+              <Tab
+                w={"100%"}
+                fontSize={"lg"}
+                fontWeight={500}
+                id="faq"
+                _selected={{ color: "#00B81D" }}
+              >
                 FAQ
               </Tab>
             </TabList>

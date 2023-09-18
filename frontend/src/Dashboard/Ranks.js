@@ -74,14 +74,14 @@ export default function Dashboard() {
             <ChakraLink
               as={ReactRouterLink}
               to="/dashboard"
-              className="active-link"
+              className="non-active-link"
             >
               Overview
             </ChakraLink>
             <ChakraLink
               as={ReactRouterLink}
               to="/ranks"
-              className="non-active-link"
+              className="active-link"
             >
               Ranks
             </ChakraLink>
@@ -101,6 +101,18 @@ export default function Dashboard() {
             </ChakraLink>
           </Flex>
         </GridItem>
+
+        <GridItem
+          colSpan={{ base: 6, md: 4 }}
+          bg="#303130"
+          rounded={"2xl"}
+          p={6}
+        >
+          <Text fontSize={"xl"} fontWeight={600} mb={10}>
+            Activity History
+          </Text>
+        </GridItem>
+
         <GridItem
           colSpan={{ base: 6, md: 4 }}
           bg="#303130"
@@ -112,8 +124,6 @@ export default function Dashboard() {
           </Text>
           <Flex
             mb={6}
-            flexDirection={{ base: "column", md: "row" }}
-            gap={{ base: "3rem", md: "" }}
             justifyContent={"space-between"}
             mx={4}
             alignItems={"stretch"}
@@ -183,40 +193,6 @@ export default function Dashboard() {
               </Flex>
             </Flex>
           </Flex>
-        </GridItem>
-        <GridItem
-          colSpan={{ base: 6, md: 2 }}
-          bg="#303130"
-          rounded={"2xl"}
-          p={6}
-        >
-          <Text fontSize={"xl"} fontWeight={600} mb={10}>
-            Activity History
-          </Text>
-        </GridItem>
-        <GridItem
-          colSpan={{ base: 6, md: 2 }}
-          bg="#303130"
-          rounded={"2xl"}
-          p={6}
-        >
-          <Text fontSize={"xl"} fontWeight={600} mb={10}>
-            Preferences
-          </Text>
-          <Box mb={4}>
-            <Text as={"b"}>Health Area</Text>
-            <UnorderedList mt={2}>
-              <ListItem>Posture</ListItem>
-              <ListItem>Eye Breaks</ListItem>
-              <ListItem>Hydration</ListItem>
-            </UnorderedList>
-          </Box>
-          <Box>
-            <Text as={"b"}>Frequency</Text>
-            <UnorderedList mt={2}>
-              <ListItem>Every 30 minutes</ListItem>
-            </UnorderedList>
-          </Box>
         </GridItem>
       </Grid>
       <Footer />

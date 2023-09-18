@@ -254,6 +254,7 @@ export default function Header() {
         onClick={children && onToggle}
         textAlign={"left"}
         fontSize={"lg"}
+
       >
         <Flex
           my={4}
@@ -337,6 +338,7 @@ export default function Header() {
       style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
       maxW={{ base: "90%", md: "5xl" }}
       m={"auto"}
+      mb={20}
       mt={6}
       borderRadius={"1rem"}
       backgroundColor="rgba(38, 39, 38, 0.8)"

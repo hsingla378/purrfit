@@ -49,7 +49,7 @@ export default function Team() {
   ];
 
   return (
-    <Box p={4} mt={16} mb={20} id="team">
+    <Box p={4} mt={16} id="team">
       <Stack
         spacing={4}
         as={Container}

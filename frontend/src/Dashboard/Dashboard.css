@@ -1,0 +1,35 @@
+.username {
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #00b81d;
+}
+
+a:active {
+  color: #00b81d;
+}
+
+.active-link {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #00b81d;
+  border-bottom: 1px solid #00b81d;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  color: #00b81d;
+  margin: 0.75rem 0;
+}
+
+.non-active-link {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.75rem 0;
+}
+
+li {
+  margin-left: 0.75em;
+}

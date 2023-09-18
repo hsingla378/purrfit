@@ -43,10 +43,11 @@ const SocialButton = ({ children, label, href }) => {
 export default function Footer() {
   return (
     <Box
+      mt={20}
       py={3}
       style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
       maxW={{ base: "90%", lg: "5xl" }}
-      m={"auto"}
+      mx={"auto"}
       mb={6}
       borderRadius={"1rem"}
       backgroundColor="rgba(38, 39, 38, 0.8)"
@@ -54,7 +55,7 @@ export default function Footer() {
       <Container
         as={Stack}
         maxW={"6xl"}
-        py={4}
+        py={2}
         direction={{ base: "column", md: "row" }}
         spacing={5}
         justify={{ base: "center", md: "space-between" }}
@@ -72,17 +73,17 @@ export default function Footer() {
             Purrfit
           </Text> */}
         </Flex>
-        <Stack direction={"row"} spacing={6} color={"white"} mr={"1rem"}>
-          <Link href={"/#features"} fontWeight={"500"} fontSize={"lg"}>
+        <Stack direction={"row"} spacing={6} color={"gray.200"} mr={"1rem"}>
+          <Link href={"/#features"} fontWeight={"500"} fontSize={"1rem"}>
             Features
           </Link>
-          <Link href={"/dashboard"} fontWeight={"500"} fontSize={"lg"}>
+          <Link href={"/dashboard"} fontWeight={"500"} fontSize={"1rem"}>
             Dashboard
           </Link>
-          <Link href={"/help"} fontWeight={"500"} fontSize={"lg"}>
+          <Link href={"/help"} fontWeight={"500"} fontSize={"1rem"}>
             Help
           </Link>
-          <Link href={"/#team"} fontWeight={"500"} fontSize={"lg"}>
+          <Link href={"/#team"} fontWeight={"500"} fontSize={"1rem"}>
             Team
           </Link>
           {/* <SocialButton label={"Twitter"} href={"#"}>
