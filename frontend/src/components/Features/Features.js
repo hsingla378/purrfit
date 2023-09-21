@@ -8,7 +8,7 @@ export default function Features() {
       name: "Goal Setting",
       headline: "Paws and pick health spots!",
       description:
-        "Discover a world of health options that align with your lifestyle. Choose health spots that resonate with your goals and preferences, all while enjoying your gaming adventures.",
+        "Browse whisker-twitching health options that purr-fectly fit you",
       image:
         "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       id: "goal-setting",
@@ -17,7 +17,7 @@ export default function Features() {
       name: "Reminders",
       headline: "Tail-twitch to health!",
       description:
-        "Purrfit Bot will seamlessly integrate health reminders into your gaming sessions. No need to interrupt your playtime; we'll meow your way to a healthier you.",
+        "Purrfit will meow activity reminders while you’re gaming, just the way you like it.",
       image:
         "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       id: "reminders",
@@ -26,7 +26,7 @@ export default function Features() {
       name: "Progress Tracking",
       headline: "Climb the kitty tower of health!",
       description:
-        "Climb the Kitty Tower of Health by earning shiny badges and leveling up with every playful activity you engage in. Purrfit Bot makes staying healthy an exciting game!",
+        "Collect shiny badges and climb higher with every playful activity you do!",
       image:
         "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       id: "progress-tracking",

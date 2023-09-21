@@ -33,3 +33,27 @@ a:active {
 li {
   margin-left: 0.75em;
 }
+
+/* select {
+  padding: 0.5em 1em;
+  background-color: transparent;
+  border: 1px solid #00b81d;
+  border-radius: 1em;
+  color: #00b81d;
+}
+
+select option {
+  padding: 0.5em 1em;
+  background-color: transparent;
+  border: 1px solid #00b81d;
+  border-radius: 1em;
+  color: #00b81d;
+}
+
+select:focus {
+  padding: 0.5em 1em;
+  background-color: transparent;
+  border: 1px solid #00b81d;
+  border-radius: 1em;
+  color: #00b81d;
+} */

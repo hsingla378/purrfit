@@ -1,13 +1,13 @@
 import "./App.css";
 import Layout from "./Layout";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer2";
-import LandingPage from "./LandingPage/LandingPage";
-import Help from "./Help/Help";
-import Dashboard from "./Dashboard/Dashboard";
-import Ranks from "./Dashboard/Ranks";
-import Preferences from "./Dashboard/Preferences";
-import ActivityTracking from "./Dashboard/ActivityTracking";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer2";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import Help from "./pages/Help/Help";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Ranks from "./pages/Dashboard/Ranks";
+import Preferences from "./pages/Dashboard/Preferences";
+import ActivityTracking from "./pages/Dashboard/ActivityTracking";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 

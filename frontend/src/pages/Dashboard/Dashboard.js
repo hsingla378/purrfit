@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import {
   Box,
   Container,
@@ -15,6 +15,7 @@ import {
   ListIcon,
   OrderedList,
   UnorderedList,
+  Divider,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
@@ -28,17 +29,22 @@ export default function Dashboard() {
         maxW={"5xl"}
         as={Container}
         h="200px"
-        templateRows="repeat(2, 1fr)"
-        templateColumns="repeat(6, 1fr)"
+        templateRows="repeat(12, 1fr)"
+        templateColumns="repeat(14, 1fr)"
         gap={6}
         height={"auto"}
+        alignItems={"start"}
+        // maxHeight={"675px"}
       >
         <GridItem
-          rowSpan={{ base: 2, md: 2 }}
-          colSpan={{ base: 6, md: 2 }}
+          // rowSpan={{ base: 2, md: 2 }}
+          rowStart={1}
+          rowEnd={13}
+          colSpan={{ base: 14, md: 4 }}
           bg="#303130"
           rounded={"2xl"}
           pb={6}
+          alignSelf={"stretch"}
         >
           <Box textAlign={"center"} p={6}>
             <Image
@@ -52,7 +58,13 @@ export default function Dashboard() {
               // boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
               mx="auto"
             ></Image>
-            <Text className="username" fontSize={"3xl"} fontWeight={500} my={3} justifyContent={{ base: "center", md: "left" }}>
+            <Text
+              className="username"
+              fontSize={"3xl"}
+              fontWeight={500}
+              my={3}
+              justifyContent={{ base: "center", md: "left" }}
+            >
               @kaisumio
             </Text>
             <Box my={4}>
@@ -74,7 +86,7 @@ export default function Dashboard() {
             <ChakraLink
               as={ReactRouterLink}
               to="/dashboard"
-              className="non-active-link"
+              className="active-link"
             >
               Overview
             </ChakraLink>
@@ -95,23 +107,28 @@ export default function Dashboard() {
             <ChakraLink
               as={ReactRouterLink}
               to="/activity"
-              className="active-link"
+              className="non-active-link"
             >
               Activity Tracking
             </ChakraLink>
           </Flex>
         </GridItem>
         <GridItem
-          colSpan={{ base: 6, md: 4 }}
+          rowStart={1}
+          rowEnd={7}
+          colSpan={{ base: 14, md: 10 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
+          alignSelf={"stretch"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Ranks
           </Text>
           <Flex
             mb={6}
+            flexDirection={{ base: "column", md: "row" }}
+            gap={{ base: "3rem", md: "" }}
             justifyContent={"space-between"}
             mx={4}
             alignItems={"stretch"}
@@ -144,17 +161,22 @@ export default function Dashboard() {
                 <Text>more to next rank</Text>
               </Flex>
             </Flex>
+            {/* <hr /> */}
+            <Divider display={{ base: "block", md: "none" }} />
             <Flex
+              // borderTop={{ base: "solid", md: "none" }}
+              // borderBottom={{ base: "solid", md: "none" }}
               flexDirection={"column"}
               justifyContent={"space-between"}
               alignItems={"center"}
             >
               <Text>Current Rank</Text>
               <Image
-                src="silver_badge.png"
+                src="silver.png"
                 my={3}
                 boxShadow={"2xl"}
                 rounded={"full"}
+                w={"80px"}
               ></Image>
               <Text as={"b"}>Silver</Text>
               <Flex gap={1}>
@@ -162,6 +184,8 @@ export default function Dashboard() {
                 <Text>activities</Text>
               </Flex>
             </Flex>
+            <Divider display={{ base: "block", md: "none" }} />
+
             <Flex
               flexDirection={"column"}
               justifyContent={"space-between"}
@@ -169,10 +193,11 @@ export default function Dashboard() {
             >
               <Text>Next Rank</Text>
               <Image
-                src="gold_badge.png"
+                src="gold.png"
                 my={3}
                 boxShadow={"2xl"}
                 rounded={"full"}
+                w={"80px"}
               ></Image>
               <Text as={"b"}>Gold</Text>
               <Flex gap={1}>
@@ -183,20 +208,26 @@ export default function Dashboard() {
           </Flex>
         </GridItem>
         <GridItem
-          colSpan={{ base: 6, md: 2 }}
+          rowStart={7}
+          rowEnd={13}
+          colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
+          alignSelf={"stretch"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Activity History
           </Text>
         </GridItem>
         <GridItem
-          colSpan={{ base: 6, md: 2 }}
+          rowStart={7}
+          rowEnd={13}
+          colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
+          alignSelf={"stretch"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Preferences

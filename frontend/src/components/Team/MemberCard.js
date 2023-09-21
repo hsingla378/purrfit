@@ -17,7 +17,7 @@ export default function MemberCard({
       maxW={{ base: "full", md: "225px" }}
       w={"full"}
       borderWidth="2px"
-      borderRadius="lg"
+      borderRadius="24px"
       // borderColor={"rgba(0, 184, 29, .5)"}
       overflow="hidden"
       p={5}

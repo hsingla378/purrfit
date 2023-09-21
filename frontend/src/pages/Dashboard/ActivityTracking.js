@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import {
   Box,
   Container,
@@ -15,6 +15,7 @@ import {
   ListIcon,
   OrderedList,
   UnorderedList,
+  Button,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
@@ -28,17 +29,22 @@ export default function Dashboard() {
         maxW={"5xl"}
         as={Container}
         h="200px"
-        templateRows="repeat(2, 1fr)"
-        templateColumns="repeat(6, 1fr)"
+        templateRows="repeat(12, 1fr)"
+        templateColumns="repeat(14, 1fr)"
         gap={6}
         height={"auto"}
+        alignItems={"start"}
+        // maxHeight={"675px"}
       >
         <GridItem
-          rowSpan={{ base: 2, md: 2 }}
-          colSpan={{ base: 6, md: 2 }}
+          rowStart={1}
+          rowEnd={13}
+          // rowSpan={{ base: 2, md: 2 }}
+          colSpan={{ base: 14, md: 4 }}
           bg="#303130"
           rounded={"2xl"}
           pb={6}
+          alignSelf={"stretch"}
         >
           <Box textAlign={"center"} p={6}>
             <Image
@@ -52,7 +58,13 @@ export default function Dashboard() {
               // boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
               mx="auto"
             ></Image>
-            <Text className="username" fontSize={"3xl"} fontWeight={500} my={3} justifyContent={{ base: "center", md: "left" }}>
+            <Text
+              className="username"
+              fontSize={"3xl"}
+              fontWeight={500}
+              my={3}
+              justifyContent={{ base: "center", md: "left" }}
+            >
               @kaisumio
             </Text>
             <Box my={4}>
@@ -88,133 +100,102 @@ export default function Dashboard() {
             <ChakraLink
               as={ReactRouterLink}
               to="/preferences"
-              className="active-link"
+              className="non-active-link"
             >
               Preferences
             </ChakraLink>
             <ChakraLink
               as={ReactRouterLink}
               to="/activity"
-              className="non-active-link"
+              className="active-link"
             >
               Activity Tracking
             </ChakraLink>
           </Flex>
         </GridItem>
         <GridItem
-          colSpan={{ base: 6, md: 4 }}
-          bg="#303130"
+          rowStart={1}
+          rowEnd={6}
+          colSpan={{ base: 14, md: 10 }}
+          // bg="#303130"
           rounded={"2xl"}
           p={6}
+          alignSelf={"stretch"}
         >
-          <Text fontSize={"xl"} fontWeight={600} mb={10}>
-            Ranks
-          </Text>
-          <Flex
-            mb={6}
-            justifyContent={"space-between"}
-            mx={4}
-            alignItems={"stretch"}
-          >
+          <Flex mb={6} justifyContent={"center"} mx={4} alignItems={"center"}>
             <Flex
               flexDirection={"column"}
-              justifyContent={"space-between"}
+              justifyContent={"center"}
               alignItems={"center"}
             >
-              <Text>Activities Completed</Text>
+              <Text fontSize={"lg"} fontWeight={500}>
+                Activities Completed
+              </Text>
               <Flex
                 className="activities-count"
-                fontSize={"4xl"}
-                border={"2px solid #00B81D"}
+                fontSize={"6xl"}
+                border={"2px solid white"}
                 p={2}
                 rounded={"full"}
-                width={"80px"}
-                height={"80px"}
+                width={"120px"}
+                height={"120px"}
                 justifyContent={"center"}
                 alignItems={"center"}
                 fontWeight={"600"}
                 my={3}
-                color={"#00B81D"}
+                color={"gray.100"}
                 boxShadow={"2xl"}
               >
                 32
-              </Flex>
-              <Flex gap={1}>
-                <Text as={"b"}>18</Text>
-                <Text>more to next rank</Text>
-              </Flex>
-            </Flex>
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Text>Current Rank</Text>
-              <Image
-                src="silver_badge.png"
-                my={3}
-                boxShadow={"2xl"}
-                rounded={"full"}
-              ></Image>
-              <Text as={"b"}>Silver</Text>
-              <Flex gap={1}>
-                <Text as={"b"}>18</Text>
-                <Text>activities</Text>
-              </Flex>
-            </Flex>
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Text>Next Rank</Text>
-              <Image
-                src="gold_badge.png"
-                my={3}
-                boxShadow={"2xl"}
-                rounded={"full"}
-              ></Image>
-              <Text as={"b"}>Gold</Text>
-              <Flex gap={1}>
-                <Text as={"b"}>50</Text>
-                <Text>activities</Text>
               </Flex>
             </Flex>
           </Flex>
         </GridItem>
         <GridItem
-          colSpan={{ base: 6, md: 2 }}
+          rowStart={6}
+          rowEnd={13}
+          colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
+          alignSelf={"stretch"}
+          textAlign={"center"}
         >
-          <Text fontSize={"xl"} fontWeight={600} mb={10}>
-            Activity History
+          <Text fontSize={"xl"} fontWeight={600} mb={2}>
+            Activities Completed
           </Text>
+          <Text fontSize={"md"}>Last 6 Months</Text>
+          <Button
+            borderColor={"#00B81D"}
+            color={"#00B81D"}
+            variant="outline"
+            my={4}
+          >
+            Share
+          </Button>
         </GridItem>
         <GridItem
-          colSpan={{ base: 6, md: 2 }}
+          rowStart={6}
+          rowEnd={13}
+          colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
+          textAlign={"center"}
+          alignSelf={"stretch"}
         >
-          <Text fontSize={"xl"} fontWeight={600} mb={10}>
-            Preferences
+          <Text fontSize={"xl"} fontWeight={600} mb={2}>
+            Activities by Area
           </Text>
-          <Box mb={4}>
-            <Text as={"b"}>Health Area</Text>
-            <UnorderedList mt={2}>
-              <ListItem>Posture</ListItem>
-              <ListItem>Eye Breaks</ListItem>
-              <ListItem>Hydration</ListItem>
-            </UnorderedList>
-          </Box>
-          <Box>
-            <Text as={"b"}>Frequency</Text>
-            <UnorderedList mt={2}>
-              <ListItem>Every 30 minutes</ListItem>
-            </UnorderedList>
-          </Box>
+          <Text fontSize={"md"}>Last 6 Months</Text>
+          <Button
+            borderColor={"#00B81D"}
+            color={"#00B81D"}
+            variant="outline"
+            my={4}
+          >
+            Share
+          </Button>
         </GridItem>
       </Grid>
       <Footer />

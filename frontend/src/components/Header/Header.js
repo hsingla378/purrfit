@@ -60,17 +60,17 @@ export default function Header() {
         {
           label: "Ranks",
           // subLabel: "Find your dream design job",
-          href: "#",
+          href: "/ranks",
         },
         {
           label: "Preferences",
           // subLabel: "An exclusive list for contract work",
-          href: "#",
+          href: "/preferences",
         },
         {
           label: "Activity History",
           // subLabel: "An exclusive list for contract work",
-          href: "#",
+          href: "/activity",
         },
       ],
       href: "/dashboard",
@@ -98,7 +98,7 @@ export default function Header() {
     },
     {
       label: "Our Team",
-      href: "#team",
+      href: "/#team",
     },
     {
       label: "Login",

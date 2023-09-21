@@ -42,10 +42,7 @@ export default function Hero() {
             </Text>
           </Heading>
           <Text color={"gray.500"} fontSize={"lg"}>
-            Discover a new level of gaming with Purrfit Bot! Seamlessly blend
-            your gaming passion with a healthier lifestyle. Set goals, receive
-            in-game health reminders, and track your progress as you play. Join
-            us and level up your life today!
+          Your kitty pal here to mix gaming fun with  some healthy vibes!
           </Text>
           <Stack
             direction={"column"}
