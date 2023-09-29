@@ -312,10 +312,11 @@ export default function Header() {
               // _hover={{
               //   bg: "#00B81D",
               // }}
+              rounded={"xl"}
+              p={6}
               _hover={{
                 bg: "rgba(0, 184, 29, .7)",
               }}
-              rounded={"full"}
               px={8}
             >
               {" "}
