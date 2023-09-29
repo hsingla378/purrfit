@@ -16,8 +16,6 @@ import {
   useBreakpointValue,
   useDisclosure,
   Image,
-  Link as ChakraLink,
-  LinkProps,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -26,8 +24,9 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import "./Header.css";
-// import { Link as ReactRouterLink } from "react-router-dom";
-import { Link } from "@chakra-ui/react";
+import { Link, Link as ReactRouterLink } from "react-router-dom";
+import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
+import { HashLink } from "react-router-hash-link";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
@@ -97,10 +96,6 @@ export default function Header() {
       href: "/help",
     },
     {
-      label: "Our Team",
-      href: "/#team",
-    },
-    {
       label: "Login",
       className: "login-btn",
       href: "#",
@@ -132,7 +127,7 @@ export default function Header() {
           <Box key={navItem.label}>
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
-                <Link href={navItem.href ?? "#"}>
+                <HashLink to={navItem.href ?? "#"}>
                   <Flex
                     as="a"
                     p={2}
@@ -146,8 +141,8 @@ export default function Header() {
                     alignItems={"center"}
                   >
                     <Text
-                      fontWeight={600}
-                      // color={useColorModeValue("gray.600", "gray.200")}
+                    // fontWeight={600}
+                    // color={useColorModeValue("gray.600", "gray.200")}
                     >
                       {!navItem.className && navItem.label}
                     </Text>
@@ -161,7 +156,7 @@ export default function Header() {
                       />
                     )}
                   </Flex>
-                </Link>
+                </HashLink>
               </PopoverTrigger>
 
               {navItem.children && (
@@ -190,44 +185,45 @@ export default function Header() {
 
   const DesktopSubNav = ({ label, href, subLabel }) => {
     return (
-      <Box
-        as="a"
-        href={href}
-        role={"group"}
-        display={"block"}
-        p={2}
-        rounded={"md"}
-        _hover={{ bg: useColorModeValue("rgba(0, 184, 29, 1)", "gray.900") }}
-      >
-        <Stack direction={"row"} align={"center"}>
-          <Box>
-            <Text
+      <HashLink to={href}>
+        <Box
+          as="a"
+          role={"group"}
+          display={"block"}
+          p={2}
+          rounded={"md"}
+          _hover={{ bg: useColorModeValue("rgba(0, 184, 29, 1)", "gray.900") }}
+        >
+          <Stack direction={"row"} align={"center"}>
+            <Box>
+              <Text
+                transition={"all .3s ease"}
+                _groupHover={{ color: "rgba(0, 184, 29, 1)" }}
+                fontWeight={500}
+              >
+                {label}
+              </Text>
+              <Text fontSize={"sm"}>{subLabel}</Text>
+            </Box>
+            <Flex
               transition={"all .3s ease"}
-              _groupHover={{ color: "rgba(0, 184, 29, 1)" }}
-              fontWeight={500}
+              transform={"translateX(-10px)"}
+              opacity={0}
+              _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
+              justify={"flex-end"}
+              align={"center"}
+              flex={1}
             >
-              {label}
-            </Text>
-            <Text fontSize={"sm"}>{subLabel}</Text>
-          </Box>
-          <Flex
-            transition={"all .3s ease"}
-            transform={"translateX(-10px)"}
-            opacity={0}
-            _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-            justify={"flex-end"}
-            align={"center"}
-            flex={1}
-          >
-            <Icon
-              color={"rgba(0, 184, 29, 1)"}
-              w={5}
-              h={5}
-              as={ChevronRightIcon}
-            />
-          </Flex>
-        </Stack>
-      </Box>
+              <Icon
+                color={"rgba(0, 184, 29, 1)"}
+                w={5}
+                h={5}
+                as={ChevronRightIcon}
+              />
+            </Flex>
+          </Stack>
+        </Box>
+      </HashLink>
     );
   };
 
@@ -254,7 +250,6 @@ export default function Header() {
         onClick={children && onToggle}
         textAlign={"left"}
         fontSize={"lg"}
-
       >
         <Flex
           my={4}
@@ -300,11 +295,11 @@ export default function Header() {
           >
             {children &&
               children.map((child) => (
-                <Link href={child.href} key={child.label}>
+                <HashLink to={child.href} key={child.label}>
                   <Box as="a" py={2}>
                     {child.label}
                   </Box>
-                </Link>
+                </HashLink>
               ))}
             <Button
               as={"a"}
@@ -335,13 +330,13 @@ export default function Header() {
   return (
     <Box
       py={3}
-      style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
-      maxW={{ base: "90%", md: "5xl" }}
+      // style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
+      maxW={{ base: "90%", md: "6xl" }}
       m={"auto"}
       mb={20}
       mt={6}
       borderRadius={"1rem"}
-      backgroundColor="rgba(38, 39, 38, 0.8)"
+      // backgroundColor="rgba(38, 39, 38, 0.8)"
     >
       <Flex
         // bg={useColorModeValue("white", "gray.800")}
@@ -361,20 +356,11 @@ export default function Header() {
           align="center"
           gap={2}
         >
-          <Link href={"/"}>
+          <HashLink to={"/"}>
             <Flex gap={1} align="center" alignItems={"center"}>
               <Image src="purrfit_logo.png" alt="Purrfit Bot" />
-              {/* <Text
-                textAlign={useBreakpointValue({ base: "center", md: "left" })}
-                // fontFamily={"heading"}
-                color={useColorModeValue("gray.800", "white")}
-                fontSize={"30px"}
-                fontWeight={600}
-              >
-                Purrfit
-              </Text> */}
             </Flex>
-          </Link>
+          </HashLink>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />

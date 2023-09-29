@@ -34,7 +34,7 @@ export default function Features() {
   ];
 
   return (
-    <Box py={16}>
+    <Box pt={16} pb={28}>
       <Stack
         spacing={4}
         as={Container}

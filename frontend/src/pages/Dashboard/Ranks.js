@@ -35,7 +35,7 @@ export default function Dashboard() {
         height={"auto"}
         alignItems={"start"}
         // maxHeight={"675px"}
-        overflow={"auto"}
+        // overflow={"auto"}
       >
         <GridItem
           rowStart={1}

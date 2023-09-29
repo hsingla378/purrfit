@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/Header/Header"
+import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/layout";
 import {

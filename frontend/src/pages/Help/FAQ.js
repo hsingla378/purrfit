@@ -34,7 +34,7 @@ export default function FAQ() {
   return (
     <Box
       mt={16}
-      color={"gray.400"}
+      color={"gray.500"}
       fontSize={{ base: "sm", sm: "lg" }}
       lineHeight={"1.8em"}
     >

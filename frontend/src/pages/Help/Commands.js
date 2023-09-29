@@ -42,7 +42,7 @@ export default function Commands() {
   ];
 
   return (
-    <Box mt={16} color={"gray.400"} fontSize={{ base: "sm", sm: "lg" }}>
+    <Box mt={16} color={"gray.500"} fontSize={{ base: "sm", sm: "lg" }}>
       {" "}
       {commandList.map((commandObj, index) => {
         return (

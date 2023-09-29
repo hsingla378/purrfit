@@ -16,7 +16,7 @@ export default function GetStarted() {
   return (
     <Box
       mt={16}
-      color={"gray.400"}
+      color={"gray.500"}
       fontSize={{ base: "sm", sm: "lg" }}
       lineHeight={"1.8em"}
     >
@@ -30,7 +30,7 @@ export default function GetStarted() {
         <Heading
           fontSize={{ base: "2xl", sm: "3xl" }}
           fontWeight={"600"}
-          color={"gray.100"}
+          color={"gray.300"}
         >
           Adding Purrfit to Your Server
         </Heading>
@@ -68,7 +68,7 @@ export default function GetStarted() {
         <Heading
           fontSize={{ base: "2xl", sm: "3xl" }}
           fontWeight={"600"}
-          color={"gray.100"}
+          color={"gray.300"}
         >
           Adjust Preferences via Dashboard
         </Heading>

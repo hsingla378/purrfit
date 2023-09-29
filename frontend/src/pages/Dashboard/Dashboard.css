@@ -6,11 +6,7 @@ a {
 }
 
 a:hover {
-  color: #00b81d;
-}
-
-a:active {
-  color: #00b81d;
+  color: #00b81d !important;
 }
 
 .active-link {
@@ -19,7 +15,7 @@ a:active {
   border-bottom: 1px solid #00b81d;
   padding: 0.75rem 1rem;
   font-weight: 500;
-  color: #00b81d;
+  color: #00b81d !important;
   margin: 0.75rem 0;
 }
 

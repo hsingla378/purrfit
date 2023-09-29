@@ -13,7 +13,7 @@ export default function LandingPage() {
       <Hero />
       <Divider maxW={"80%"} m={"auto"} />
       <Features />
-      <Divider maxW={"80%"} m={"auto"} />
+      {/* <Divider maxW={"80%"} m={"auto"} /> */}
       <Team />
       <Footer />
     </>

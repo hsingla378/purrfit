@@ -59,6 +59,7 @@ export default function SingleFeature({ feature, index }) {
                   alt={"feature image"}
                   src={image}
                   objectFit={"cover"}
+                  maxW={"400px"}
                 />
               </Flex>
               <Stack spacing={4}>
@@ -106,6 +107,7 @@ export default function SingleFeature({ feature, index }) {
                   alt={"feature image"}
                   src={image}
                   objectFit={"cover"}
+                  maxW={"400px"}
                 />
               </Flex>
             </>

@@ -16,13 +16,13 @@ export default function MemberCard({
     <Box
       maxW={{ base: "full", md: "225px" }}
       w={"full"}
-      borderWidth="2px"
+      borderWidth="1px"
       borderRadius="24px"
       // borderColor={"rgba(0, 184, 29, .5)"}
       overflow="hidden"
       p={5}
       align="center"
-      boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
+      // boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
     >
       <Stack align={"start"} spacing={2} position={"relative"}>
         <Flex

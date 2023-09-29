@@ -37,7 +37,7 @@ export default function Dashboard() {
         height={"auto"}
         alignItems={"start"}
         // maxHeight={"675px"}
-        overflow={"auto"}
+        // overflow={"auto"}
       >
         <GridItem
           rowStart={1}
@@ -144,7 +144,7 @@ export default function Dashboard() {
           alignSelf={"stretch"}
         >
           <Select
-            placeholder="Select option"
+            placeholder="Select Frequency"
             borderColor={"#00B81D"}
             color={"#00B81D"}
             focusBorderColor={"#00B81D"}
@@ -413,16 +413,16 @@ export default function Dashboard() {
                 justifyContent={"center"}
                 alignItems={"center"}
               >
-                <AddIcon w={8} h={8} color="#00B81D" />
+                <AddIcon w={8} h={8} color="#00B81D" cursor={"pointer"} />
               </Flex>
-              <DeleteIcon
+              {/* <DeleteIcon
                 w={6}
                 h={6}
                 color="#A9A9A9"
                 position={"absolute"}
                 top={"15px"}
                 right={"15px"}
-              />
+              /> */}
               <Text my={2}>Add focus area</Text>
             </GridItem>
           </Grid>
