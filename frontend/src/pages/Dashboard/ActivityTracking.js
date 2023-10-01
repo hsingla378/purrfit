@@ -30,7 +30,7 @@ import ActivitiesByArea from "./ActivitiesByArea";
 import ActivitiesCompleted from "./ActivitiesCompleted";
 
 export default function ActivityTracking() {
-  const [activityCount, setActivityCount] = useState(32);
+  const [activityCount, setActivityCount] = useState(null);
 
   const fetchAcitivities = () => {
     const token = localStorage.getItem("accessToken");
