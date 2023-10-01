@@ -77,29 +77,29 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
     },
     {
       label: "Help",
-      children: [
-        {
-          label: "Get Started",
-          // subLabel: "Find your dream design job",
-          href: "/help#get-started",
-        },
-        {
-          label: "Commands",
-          // subLabel: "An exclusive list for contract work",
-          href: "/help#commands",
-        },
-        {
-          label: "FAQs",
-          // subLabel: "An exclusive list for contract work",
-          href: "/help#faq",
-        },
-      ],
+      // children: [
+      //   {
+      //     label: "Get Started",
+      //     // subLabel: "Find your dream design job",
+      //     href: "/help#get-started",
+      //   },
+      //   {
+      //     label: "Commands",
+      //     // subLabel: "An exclusive list for contract work",
+      //     href: "/help#commands",
+      //   },
+      //   {
+      //     label: "FAQs",
+      //     // subLabel: "An exclusive list for contract work",
+      //     href: "/help#faq",
+      //   },
+      // ],
       href: "/help",
     },
     {
       label: "Login",
       className: "login-btn",
-      href: "#",
+      href: "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify",
     },
   ];
 

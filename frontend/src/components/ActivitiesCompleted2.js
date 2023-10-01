@@ -1,8 +1,7 @@
-const { EmbedBuilder } = require("discord.js");
 const goals = require("../data/goals");
 const ChartJsImage = require("chartjs-to-image");
 
-export default async function profileMessage(
+export default async function ActivitiesCompleted2(
   username,
   badge,
   preferences,
