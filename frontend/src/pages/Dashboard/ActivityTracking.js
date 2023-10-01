@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import NotLoggenIn from "../../components/NotLoggenIn/NotLoggenIn";
+import axios from "axios";
 import {
   Box,
   Container,
@@ -16,12 +19,44 @@ import {
   OrderedList,
   UnorderedList,
   Button,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 import "./Dashboard.css";
 
-export default function Dashboard() {
+export default function ActivityTracking() {
+  const [activityCount, setActivityCount] = useState(null);
+
+  const fetchAcitivities = () => {
+    const token = localStorage.getItem("accessToken");
+
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "https://purrfit-back.onrender.com/api/v1/user/activiyTrack",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(response.data.data);
+        setActivityCount(response.data.data.activityCount);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchAcitivities();
+  }, []);
+
   return (
     <>
       <Header />
@@ -66,9 +101,11 @@ export default function Dashboard() {
               my={3}
               justifyContent={{ base: "center", md: "left" }}
             >
-              @kaisumio
+              {localStorage.getItem("username")
+                ? localStorage.getItem("username")
+                : "Profile"}
             </Text>
-            <Box my={4}>
+            {/* <Box my={4}>
               <Flex gap={1} justifyContent={{ base: "center", md: "left" }}>
                 <Text as="b">UserID:</Text>
                 <Text>9866550245</Text>
@@ -77,7 +114,7 @@ export default function Dashboard() {
                 <Text as="b">Role:</Text>
                 <Text>User</Text>
               </Flex>
-            </Box>
+            </Box> */}
           </Box>
           <Flex
             flexDirection={"column"}
@@ -124,32 +161,36 @@ export default function Dashboard() {
           alignSelf={"stretch"}
         >
           <Flex mb={6} justifyContent={"center"} mx={4} alignItems={"center"}>
-            <Flex
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <Text fontSize={"lg"} fontWeight={500}>
-                Activities Completed
-              </Text>
+            {!localStorage.getItem("accessToken") ? (
+              <NotLoggenIn />
+            ) : (
               <Flex
-                className="activities-count"
-                fontSize={"6xl"}
-                border={"2px solid white"}
-                p={2}
-                rounded={"full"}
-                width={"120px"}
-                height={"120px"}
+                flexDirection={"column"}
                 justifyContent={"center"}
                 alignItems={"center"}
-                fontWeight={"600"}
-                my={3}
-                color={"gray.100"}
-                boxShadow={"2xl"}
               >
-                32
+                <Text fontSize={"lg"} fontWeight={500}>
+                  Activities Completed
+                </Text>
+                <Flex
+                  className="activities-count"
+                  fontSize={"6xl"}
+                  border={"2px solid white"}
+                  p={2}
+                  rounded={"full"}
+                  width={"120px"}
+                  height={"120px"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  fontWeight={"600"}
+                  my={3}
+                  color={"gray.100"}
+                  boxShadow={"2xl"}
+                >
+                  {activityCount}
+                </Flex>
               </Flex>
-            </Flex>
+            )}
           </Flex>
         </GridItem>
         <GridItem
@@ -166,14 +207,15 @@ export default function Dashboard() {
             Activities Completed
           </Text>
           <Text fontSize={"md"}>Last 6 Months</Text>
-          <Button
+          {/* <Button
             borderColor={"#00B81D"}
             color={"#00B81D"}
             variant="outline"
             my={4}
           >
             Share
-          </Button>
+          </Button> */}
+          {!localStorage.getItem("accessToken") ? <NotLoggenIn /> : <></>}
         </GridItem>
         <GridItem
           rowStart={6}
@@ -189,14 +231,15 @@ export default function Dashboard() {
             Activities by Area
           </Text>
           <Text fontSize={"md"}>Last 6 Months</Text>
-          <Button
+          {!localStorage.getItem("accessToken") ? <NotLoggenIn /> : <></>}
+          {/* <Button
             borderColor={"#00B81D"}
             color={"#00B81D"}
             variant="outline"
             my={4}
           >
             Share
-          </Button>
+          </Button> */}
         </GridItem>
       </Grid>
       <Footer />

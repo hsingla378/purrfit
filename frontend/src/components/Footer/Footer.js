@@ -29,6 +29,9 @@ export default function Footer() {
       color={useColorModeValue("gray.700", "gray.200")}
       mt={16}
       px={10}
+      // position={"fixed"}
+      bottom={0}
+      // w={"100%"}
     >
       <Container as={Stack} maxW={"5xl"} py={10}>
         <Flex

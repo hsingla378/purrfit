@@ -23,18 +23,14 @@ import {
   SkeletonCircle,
   SkeletonText,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 import "./Dashboard.css";
 import axios from "axios";
-// import { useHistory } from "react-router-dom";
-import Overview from "./Overview";
-import Ranks from "./Ranks";
-import ActivityTracking from "./ActivityTracking";
-import Preferences from "./Preferences";
 
-export default function Dashboard() {
+export default function Overview() {
   const [currentActivities, setCurrentActivities] = useState(null);
   const [currentBadge, setCurrentBadge] = useState({});
   const [nextBadge, setNextBadge] = useState({});
@@ -63,6 +59,7 @@ export default function Dashboard() {
         setNextBadge(response.data.data.ranks.nextBadge);
         setGoals(response.data.data.preferences.goals);
         setFrequency(response.data.data.preferences.frequency);
+       
       })
       .catch((error) => {
         console.log(error);
@@ -74,30 +71,6 @@ export default function Dashboard() {
   useEffect(() => {
     fetchOverview();
   }, []);
-
-  // const history = useHistory();
-
-  // const currentPath = history.location.pathname;
-
-  // Conditionally render components based on the current path
-  // let componentToRender;
-
-  // switch (currentPath) {
-  //   case "/dashboard":
-  //     componentToRender = <Overview />;
-  //     break;
-  //   case "/ranks":
-  //     componentToRender = <Ranks />;
-  //     break;
-  //   case "/preferences":
-  //     componentToRender = <Preferences />;
-  //     break;
-  //   case "/activity":
-  //     componentToRender = <ActivityTracking />;
-  //     break;
-  //   default:
-  //     componentToRender = <div>Page not found</div>;
-  // }
 
   return (
     <>

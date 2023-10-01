@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import NotLoggenIn from "../../components/NotLoggenIn/NotLoggenIn";
+import axios from "axios";
+
 import {
   Box,
   Container,
@@ -17,13 +21,198 @@ import {
   UnorderedList,
   Stack,
   Select,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+  useToast,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  AlertDialogCloseButton,
+  Button,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 import "./Dashboard.css";
 import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
 
-export default function Dashboard() {
+export default function Preferences() {
+  // const [preferences, setPreferences] = useState([
+  //   "posture",
+  //   "hydration",
+  //   "eyeBreaks",
+  //   "stretching",
+  // ]);
+  const frequencies = [1, 30, 60, 90, 120];
+  const token = localStorage.getItem("accessToken");
+  const [preferences, setPreferences] = useState([]);
+  const [frequency, setFrequency] = useState(null);
+  const [preferencesLeft, setPreferencesLeft] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
+  const toast = useToast();
+
+  const fetchPreferences = () => {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "https://purrfit-back.onrender.com/api/v1/user/preferences",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(response.data.data);
+        // console.log(response.data.data.preferences.goals);
+        setPreferences(response.data.data.preferences.goals);
+        setFrequency(response.data.data.preferences.frequency);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    const preferencesLeftArray = allPreferences.filter((preference) => {
+      return !preferences.includes(preference);
+    });
+    setPreferencesLeft(preferencesLeftArray);
+  };
+
+  useEffect(() => {
+    fetchPreferences();
+  }, []);
+
+  // useEffect(() => {
+  //   const preferencesLeftArray = allPreferences.filter((preference) => {
+  //     return !preferences.includes(preference);
+  //   });
+  //   setPreferencesLeft(preferencesLeftArray);
+  // }, []);
+
+  const changeFrequency = (value) => {
+    let data = JSON.stringify({
+      frequency: value,
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "https://purrfit-back.onrender.com/api/v1/user/preferences/frequency",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        toast({
+          title: `Frequency set to ${value} minutes successfully`,
+          status: "success",
+          isClosable: true,
+        });
+        setFrequency(value);
+      })
+      .catch((error) => {
+        toast({
+          title: `Oops! Something went wrong`,
+          status: "error",
+          isClosable: true,
+        });
+        console.log(error);
+      });
+  };
+
+  const addPreference = (value) => {
+    const token = localStorage.getItem("accessToken");
+    let data = JSON.stringify({
+      goals: [...preferences, value],
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "https://purrfit-back.onrender.com/api/v1/user/preferences/goals",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        fetchPreferences();
+        toast({
+          title: `Preference added successfully`,
+          status: "success",
+          isClosable: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const deletePreference = (value) => {
+    console.log(value);
+    const token = localStorage.getItem("accessToken");
+    let updatedPreferences = [...preferences];
+    const index = updatedPreferences.indexOf(value);
+    if (index > -1) {
+      updatedPreferences.splice(index, 1);
+    }
+    let data = JSON.stringify({
+      goals: [...updatedPreferences],
+    });
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "https://purrfit-back.onrender.com/api/v1/user/preferences/goals",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        fetchPreferences();
+        toast({
+          title: `Preference removed successfully`,
+          status: "success",
+          isClosable: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const allPreferences = [
+    "posture",
+    "hydration",
+    "eyeBreaks",
+    "stretching",
+    "movement",
+    "mindfulBreathing",
+  ];
+
   return (
     <>
       <Header />
@@ -67,9 +256,11 @@ export default function Dashboard() {
               my={3}
               justifyContent={{ base: "center", md: "left" }}
             >
-              @kaisumio
+              {localStorage.getItem("username")
+                ? localStorage.getItem("username")
+                : "Profile"}
             </Text>
-            <Box my={4}>
+            {/* <Box my={4}>
               <Flex gap={1} justifyContent={{ base: "center", md: "left" }}>
                 <Text as="b">UserID:</Text>
                 <Text>9866550245</Text>
@@ -78,7 +269,7 @@ export default function Dashboard() {
                 <Text as="b">Role:</Text>
                 <Text>User</Text>
               </Flex>
-            </Box>
+            </Box> */}
           </Box>
           <Flex
             flexDirection={"column"}
@@ -143,279 +334,167 @@ export default function Dashboard() {
           p={6}
           alignSelf={"stretch"}
         >
-          <Select
-            placeholder="Select Frequency"
-            borderColor={"#00B81D"}
-            color={"#00B81D"}
-            focusBorderColor={"#00B81D"}
-            size={"lg"}
-          >
-            <option value="10mins">Every 10 Minutes</option>
-            <option value="30mins">Every 30 Minutes</option>
-            <option value="1hour">Every 1 hour</option>
-            <option value="90mins">Every 90 minutes</option>
-            <option value="2hours">Every 2 hours</option>
-          </Select>
-          <Grid
-            templateColumns="repeat(3, 1fr)"
-            gap={6}
-            alignItems={"stretch"}
-            pt={8}
-            h={"100%"}
-          >
-            <GridItem
-              bg="#303130"
-              alignSelf={"stretch"}
-              rounded={"2xl"}
-              textAlign={"center"}
-              fontSize={"lg"}
-              fontWeight={500}
-              position={"relative"}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              {/* <Image
-                src={""}
-                alt={""}
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              /> */}
-              <Box
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              ></Box>
-              <DeleteIcon
-                w={6}
-                h={6}
-                color="#A9A9A9"
-                position={"absolute"}
-                top={"15px"}
-                right={"15px"}
-              />
-              <Text my={2}>Posture</Text>
-            </GridItem>
-            <GridItem
-              bg="#303130"
-              alignSelf={"stretch"}
-              rounded={"2xl"}
-              textAlign={"center"}
-              fontSize={"lg"}
-              fontWeight={500}
-              position={"relative"}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              {/* <Image
-                src={""}
-                alt={""}
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              /> */}
-              <Box
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              ></Box>
-              <DeleteIcon
-                w={6}
-                h={6}
-                color="#A9A9A9"
-                position={"absolute"}
-                top={"15px"}
-                right={"15px"}
-              />
-              <Text my={2}>Hydration</Text>
-            </GridItem>{" "}
-            <GridItem
-              bg="#303130"
-              alignSelf={"stretch"}
-              rounded={"2xl"}
-              textAlign={"center"}
-              fontSize={"lg"}
-              fontWeight={500}
-              position={"relative"}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              {/* <Image
-                src={""}
-                alt={""}
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              /> */}
-              <Box
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              ></Box>
-              <DeleteIcon
-                w={6}
-                h={6}
-                color="#A9A9A9"
-                position={"absolute"}
-                top={"15px"}
-                right={"15px"}
-              />
-              <Text my={2}>Eye Breaks</Text>
-            </GridItem>{" "}
-            <GridItem
-              bg="#303130"
-              alignSelf={"stretch"}
-              rounded={"2xl"}
-              textAlign={"center"}
-              fontSize={"lg"}
-              fontWeight={500}
-              position={"relative"}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              {/* <Image
-                src={""}
-                alt={""}
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              /> */}
-              <Box
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              ></Box>
-              <DeleteIcon
-                w={6}
-                h={6}
-                color="#A9A9A9"
-                position={"absolute"}
-                top={"15px"}
-                right={"15px"}
-              />
-              <Text my={2}>Stretching</Text>
-            </GridItem>{" "}
-            <GridItem
-              bg="#303130"
-              alignSelf={"stretch"}
-              rounded={"2xl"}
-              textAlign={"center"}
-              fontSize={"lg"}
-              fontWeight={500}
-              position={"relative"}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              {/* <Image
-                src={""}
-                alt={""}
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              /> */}
-              <Box
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              ></Box>
-              <DeleteIcon
-                w={6}
-                h={6}
-                color="#A9A9A9"
-                position={"absolute"}
-                top={"15px"}
-                right={"15px"}
-              />
-              <Text my={2}>Movement</Text>
-            </GridItem>{" "}
-            <GridItem
-              bg="#303130"
-              alignSelf={"stretch"}
-              rounded={"2xl"}
-              textAlign={"center"}
-              fontSize={"md"}
-              fontWeight={500}
-              position={"relative"}
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              {/* <Image
-                src={""}
-                alt={""}
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              /> */}
-              <Flex
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-                justifyContent={"center"}
-                alignItems={"center"}
+          {!localStorage.getItem("accessToken") ? (
+            <NotLoggenIn />
+          ) : (
+            <>
+              <Select
+                // placeholder="Select Frequency"
+                borderColor={"#00B81D"}
+                color={"#00B81D"}
+                focusBorderColor={"#00B81D"}
+                size={"lg"}
+                onChange={(e) => changeFrequency(e.target.value)}
               >
-                <AddIcon w={8} h={8} color="#00B81D" cursor={"pointer"} />
-              </Flex>
-              {/* <DeleteIcon
+                <option selected={frequency == null && true} disabled={true}>
+                  Select Frequency
+                </option>
+                {frequencies.map((value, index) => {
+                  return (
+                    <option
+                      key={index}
+                      value={value}
+                      selected={value === frequency && true}
+                      // disabled={value === frequency ? true : false}
+                    >
+                      Every {value} Minutes
+                    </option>
+                  );
+                })}
+              </Select>
+              <Grid
+                templateColumns="repeat(3, 1fr)"
+                gap={6}
+                alignItems={"stretch"}
+                pt={8}
+                h={"100%"}
+              >
+                {preferences.map((preference) => {
+                  return (
+                    <GridItem
+                      bg="#303130"
+                      alignSelf={"stretch"}
+                      rounded={"2xl"}
+                      textAlign={"center"}
+                      fontSize={"lg"}
+                      fontWeight={500}
+                      position={"relative"}
+                      display={"flex"}
+                      flexDirection={"column"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                      maxHeight={"200px"}
+                    >
+                      {/* <Image
+                src={""}
+                alt={""}
+                backgroundColor={"#1F1F1F"}
+                height={"75px"}
+                width={"75px"}
+                rounded={"full"}
+                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
+                mx="auto"
+                my={2}
+              /> */}
+                      <Box
+                        backgroundColor={"#1F1F1F"}
+                        height={"75px"}
+                        width={"75px"}
+                        rounded={"full"}
+                        boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
+                        mx="auto"
+                        my={2}
+                      ></Box>
+                      <DeleteIcon
+                        w={6}
+                        h={6}
+                        color="#A9A9A9"
+                        position={"absolute"}
+                        top={"15px"}
+                        right={"15px"}
+                        cursor={"pointer"}
+                        onClick={(e) => deletePreference(preference)}
+                      />
+                      <Text my={2}>{preference}</Text>
+                    </GridItem>
+                  );
+                })}
+                <GridItem
+                  bg="#303130"
+                  alignSelf={"stretch"}
+                  rounded={"2xl"}
+                  textAlign={"center"}
+                  fontSize={"md"}
+                  fontWeight={500}
+                  position={"relative"}
+                  flexDirection={"column"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  display={preferences.length === 6 ? "none" : "flex"}
+                >
+                  {/* <Image
+                src={""}
+                alt={""}
+                backgroundColor={"#1F1F1F"}
+                height={"75px"}
+                width={"75px"}
+                rounded={"full"}
+                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
+                mx="auto"
+                my={2}
+              /> */}
+                  <Flex
+                    backgroundColor={"#1F1F1F"}
+                    height={"75px"}
+                    width={"75px"}
+                    rounded={"full"}
+                    boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
+                    mx="auto"
+                    my={2}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    onClick={onOpen}
+                    cursor={"pointer"}
+                  >
+                    <AddIcon w={8} h={8} color="#00B81D" />
+                    <AlertDialog
+                      motionPreset="slideInBottom"
+                      leastDestructiveRef={cancelRef}
+                      onClose={onClose}
+                      isOpen={isOpen}
+                      isCentered
+                    >
+                      <AlertDialogOverlay />
+
+                      <AlertDialogContent>
+                        <AlertDialogHeader>Add preference</AlertDialogHeader>
+                        <AlertDialogCloseButton />
+                        <AlertDialogBody>
+                          <Select
+                            onChange={(e) => addPreference(e.target.value)}
+                          >
+                            <option value="" disabled selected>
+                              Select Preference to add
+                            </option>
+                            {preferencesLeft.map((preference) => {
+                              return (
+                                <option value={preference}>{preference}</option>
+                              );
+                            })}
+                          </Select>
+                        </AlertDialogBody>
+                        <AlertDialogFooter>
+                          <Button ref={cancelRef} onClick={onClose}>
+                            Cancel
+                          </Button>
+                          {/* <Button colorScheme="green" onClick={onClose} ml={3}>
+                            Add
+                          </Button> */}
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </Flex>
+                  {/* <DeleteIcon
                 w={6}
                 h={6}
                 color="#A9A9A9"
@@ -423,9 +502,11 @@ export default function Dashboard() {
                 top={"15px"}
                 right={"15px"}
               /> */}
-              <Text my={2}>Add focus area</Text>
-            </GridItem>
-          </Grid>
+                  <Text my={2}>Add focus area</Text>
+                </GridItem>
+              </Grid>
+            </>
+          )}
         </GridItem>
       </Grid>
       <Footer />

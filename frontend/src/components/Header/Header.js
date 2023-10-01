@@ -1,5 +1,6 @@
 "use client";
-
+import React, { useEffect } from "react";
+import { useState } from "react";
 import {
   Box,
   Flex,
@@ -28,7 +29,7 @@ import { Link, Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 import { HashLink } from "react-router-hash-link";
 
-export default function Header() {
+export default function Header({ isLoggedin, setIsLoggedin }) {
   const { isOpen, onToggle } = useDisclosure();
 
   const NAV_ITEMS = [
@@ -301,31 +302,67 @@ export default function Header() {
                   </Box>
                 </HashLink>
               ))}
-            <Button
-              as={"a"}
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"1rem"}
-              fontWeight={"bold"}
-              color={"white"}
-              bg={"#00B81D"}
-              href={"#"}
-              // _hover={{
-              //   bg: "#00B81D",
-              // }}
-              rounded={"xl"}
-              p={6}
-              _hover={{
-                bg: "rgba(0, 184, 29, .7)",
-              }}
-              px={8}
-            >
-              {" "}
-              Login
-            </Button>
+            {!!localStorage.getItem("accessToken") ? (
+              <Button
+                as={"a"}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"1rem"}
+                fontWeight={"bold"}
+                color={"white"}
+                bg={"#00B81D"}
+                href={
+                  "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify"
+                }
+                // _hover={{
+                //   bg: "#00B81D",
+                // }}
+                rounded={"xl"}
+                p={6}
+                _hover={{
+                  bg: "rgba(0, 184, 29, .7)",
+                }}
+                px={8}
+              >
+                {" "}
+                Login
+              </Button>
+            ) : (
+              <Button
+                as={"a"}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"1rem"}
+                fontWeight={"bold"}
+                color={"white"}
+                bg={"#00B81D"}
+                href={
+                  "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify"
+                }
+                // _hover={{
+                //   bg: "#00B81D",
+                // }}
+                rounded={"xl"}
+                p={6}
+                _hover={{
+                  bg: "rgba(0, 184, 29, .7)",
+                }}
+                px={8}
+              >
+                {" "}
+                Logout
+              </Button>
+            )}
           </Stack>
         </Collapse>
       </Stack>
     );
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("username");
+    // setIsLoggedin(false);
+
+    window.location.reload();
   };
 
   return (
@@ -390,27 +427,51 @@ export default function Header() {
           display={{ base: "none", md: "block" }}
           spacing={6}
         >
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"1rem"}
-            fontWeight={"bold"}
-            color={"white"}
-            colorScheme={"green"}
-            bg={"#00B81D"}
-            href={"#"}
-            // _hover={{
-            //   bg: "#00B81D",
-            // }}
-            _hover={{
-              bg: "rgba(0, 184, 29, .7)",
-            }}
-            rounded={"xl"}
-            px={6}
-          >
-            {" "}
-            Login
-          </Button>
+          {!localStorage.getItem("accessToken") ? (
+            <Button
+              as={"a"}
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"1rem"}
+              fontWeight={"bold"}
+              color={"white"}
+              colorScheme={"green"}
+              bg={"#00B81D"}
+              href={
+                "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify"
+              }
+              // _hover={{
+              //   bg: "#00B81D",
+              // }}
+              _hover={{
+                bg: "rgba(0, 184, 29, .7)",
+              }}
+              rounded={"xl"}
+              px={6}
+            >
+              {" "}
+              Login
+            </Button>
+          ) : (
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"1rem"}
+              fontWeight={"bold"}
+              color={"white"}
+              colorScheme={"green"}
+              bg={"#00B81D"}
+              // _hover={{
+              //   bg: "#00B81D",
+              // }}
+              _hover={{
+                bg: "rgba(0, 184, 29, .7)",
+              }}
+              rounded={"xl"}
+              px={6}
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          )}
         </Stack>
       </Flex>
 
