@@ -8,11 +8,24 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Ranks from "./pages/Dashboard/Ranks";
 import Preferences from "./pages/Dashboard/Preferences";
 import ActivityTracking from "./pages/Dashboard/ActivityTracking";
-import ActivitiesCompleted from "./components/ActivitiesCompleted";
-
+import ActivitiesByArea from "./pages/Dashboard/ActivitiesByArea";
+import ActivitiesCompleted from "./pages/Dashboard/ActivitiesCompleted";
+import { UserData } from "./Data";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
+  console.log("UserData", UserData);
+  const [userData, setUserData] = useState({
+    labels: UserData.map((data) => data.year),
+    datasets: [
+      {
+        label: "Users Gained",
+        data: UserData.map((data) => data.userGain),
+      },
+    ],
+  });
+
   return (
     <BrowserRouter>
       <Routes>
@@ -23,6 +36,7 @@ function App() {
         <Route exact path="/preferences" element={<Preferences />} />
         <Route exact path="/activity" element={<ActivityTracking />} />
         <Route exact path="/completed" element={<ActivitiesCompleted />} />
+        <Route exact path="/byarea" element={<ActivitiesByArea />} />
       </Routes>
     </BrowserRouter>
   );

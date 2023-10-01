@@ -29,6 +29,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 import "./Dashboard.css";
 import axios from "axios";
+import ActivitiesCompleted from "./ActivitiesCompleted";
 
 export default function Overview() {
   const [currentActivities, setCurrentActivities] = useState(null);
@@ -59,7 +60,6 @@ export default function Overview() {
         setNextBadge(response.data.data.ranks.nextBadge);
         setGoals(response.data.data.preferences.goals);
         setFrequency(response.data.data.preferences.frequency);
-       
       })
       .catch((error) => {
         console.log(error);
@@ -279,7 +279,11 @@ export default function Overview() {
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Activity History
           </Text>
-          {!localStorage.getItem("accessToken") ? <NotLoggenIn /> : <></>}
+          {!localStorage.getItem("accessToken") ? (
+            <NotLoggenIn />
+          ) : (
+            <ActivitiesCompleted />
+          )}
         </GridItem>
         <GridItem
           rowStart={7}

@@ -213,6 +213,22 @@ export default function Preferences() {
     "mindfulBreathing",
   ];
 
+  const getImageURL = (name) => {
+    if (name === "posture") {
+      return "posture.png";
+    } else if (name === "hydration") {
+      return "hydration.png";
+    } else if (name === "eyeBreaks") {
+      return "eye_breaks.png";
+    } else if (name === "stretching") {
+      return "stretching.png";
+    } else if (name === "movement") {
+      return "movement.png";
+    } else if (name === "mindfulBreathing") {
+      return "mindful_breathing.png";
+    }
+  };
+
   return (
     <>
       <Header />
@@ -385,18 +401,10 @@ export default function Preferences() {
                       alignItems={"center"}
                       maxHeight={"200px"}
                     >
-                      {/* <Image
-                src={""}
-                alt={""}
-                backgroundColor={"#1F1F1F"}
-                height={"75px"}
-                width={"75px"}
-                rounded={"full"}
-                boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
-                mx="auto"
-                my={2}
-              /> */}
-                      <Box
+                      {console.log("image", getImageURL(preference))}
+                      <Image
+                        src={getImageURL(preference)}
+                        alt={""}
                         backgroundColor={"#1F1F1F"}
                         height={"75px"}
                         width={"75px"}
@@ -404,7 +412,17 @@ export default function Preferences() {
                         boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
                         mx="auto"
                         my={2}
-                      ></Box>
+                        p={4}
+                      />
+                      {/* <Box
+                        backgroundColor={"#1F1F1F"}
+                        height={"75px"}
+                        width={"75px"}
+                        rounded={"full"}
+                        boxShadow={"0 3px 10px rgb(0 0 0 / 0.2)"}
+                        mx="auto"
+                        my={2}
+                      ></Box> */}
                       <DeleteIcon
                         w={6}
                         h={6}
@@ -431,6 +449,7 @@ export default function Preferences() {
                   justifyContent={"center"}
                   alignItems={"center"}
                   display={preferences.length === 6 ? "none" : "flex"}
+                  maxHeight={"200px"}
                 >
                   {/* <Image
                 src={""}

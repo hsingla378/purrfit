@@ -33,6 +33,7 @@ import Overview from "./Overview";
 import Ranks from "./Ranks";
 import ActivityTracking from "./ActivityTracking";
 import Preferences from "./Preferences";
+import ActivitiesCompleted from "./ActivitiesCompleted";
 
 export default function Dashboard() {
   const [currentActivities, setCurrentActivities] = useState(null);
@@ -306,7 +307,11 @@ export default function Dashboard() {
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Activity History
           </Text>
-          {!localStorage.getItem("accessToken") ? <NotLoggenIn /> : <></>}
+          {!localStorage.getItem("accessToken") ? (
+            <NotLoggenIn />
+          ) : (
+            <ActivitiesCompleted />
+          )}
         </GridItem>
         <GridItem
           rowStart={7}

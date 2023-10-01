@@ -26,9 +26,11 @@ import {
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 import "./Dashboard.css";
+import ActivitiesByArea from "./ActivitiesByArea";
+import ActivitiesCompleted from "./ActivitiesCompleted";
 
 export default function ActivityTracking() {
-  const [activityCount, setActivityCount] = useState(null);
+  const [activityCount, setActivityCount] = useState(32);
 
   const fetchAcitivities = () => {
     const token = localStorage.getItem("accessToken");
@@ -46,7 +48,14 @@ export default function ActivityTracking() {
       .request(config)
       .then((response) => {
         console.log(response.data.data);
-        setActivityCount(response.data.data.activityCount);
+        setActivityCount(() => {
+          let sum = 0;
+          for (let activity of response.data.data.activityCount) {
+            sum += activity.count;
+          }
+          return sum;
+        });
+        // setActivityCount(response.data.data.activityCount.length);
       })
       .catch((error) => {
         console.log(error);
@@ -215,7 +224,13 @@ export default function ActivityTracking() {
           >
             Share
           </Button> */}
-          {!localStorage.getItem("accessToken") ? <NotLoggenIn /> : <></>}
+          {!localStorage.getItem("accessToken") ? (
+            <NotLoggenIn />
+          ) : (
+            <Flex justifyContent={"center"} alignItems={"center"} h={"80%"}>
+              <ActivitiesCompleted />
+            </Flex>
+          )}
         </GridItem>
         <GridItem
           rowStart={6}
@@ -231,7 +246,13 @@ export default function ActivityTracking() {
             Activities by Area
           </Text>
           <Text fontSize={"md"}>Last 6 Months</Text>
-          {!localStorage.getItem("accessToken") ? <NotLoggenIn /> : <></>}
+          {!localStorage.getItem("accessToken") ? (
+            <NotLoggenIn />
+          ) : (
+            <Flex justifyContent={"center"} alignItems={"center"} h={"80%"}>
+              <ActivitiesByArea />
+            </Flex>
+          )}
           {/* <Button
             borderColor={"#00B81D"}
             color={"#00B81D"}

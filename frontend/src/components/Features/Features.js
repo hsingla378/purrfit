@@ -10,7 +10,7 @@ export default function Features() {
       description:
         "Browse whisker-twitching health options that purr-fectly fit you",
       image:
-        "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "goal_setting.png",
       id: "goal-setting",
     },
     {
@@ -19,7 +19,7 @@ export default function Features() {
       description:
         "Purrfit will meow activity reminders while you’re gaming, just the way you like it.",
       image:
-        "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "reminders.png",
       id: "reminders",
     },
     {
@@ -28,7 +28,7 @@ export default function Features() {
       description:
         "Collect shiny badges and climb higher with every playful activity you do!",
       image:
-        "https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "progress_tracking.png",
       id: "progress-tracking",
     },
   ];
