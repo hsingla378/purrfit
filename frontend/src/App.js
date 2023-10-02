@@ -15,7 +15,6 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  console.log("UserData", UserData);
   const [userData, setUserData] = useState({
     labels: UserData.map((data) => data.year),
     datasets: [

@@ -51,14 +51,14 @@ export default function Ranks() {
     axios
       .request(config)
       .then((response) => {
-        console.log(response.data.data);
         setCurrentBadge(response.data.data.badge);
         setBadges(response.data.data.badges);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
-    setLoading(false);
   };
 
   useEffect(() => {

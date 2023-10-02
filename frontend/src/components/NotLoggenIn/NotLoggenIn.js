@@ -835,21 +835,17 @@ const Illustration = (props) => {
 
 export default function NotLoggenIn() {
   return (
-    <Container maxW={"5xl"}>
-      <Flex
-        textAlign={"center"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        height={"100%"}
-        // spacing={{ base: 8, md: 10 }}
-        // py={{ base: 20, md: 28 }}
-      >
-        <Heading fontWeight={600} fontSize={"xl"}>
-          <Text as={"span"} color={"#00B81D"}>
-            Please login to check the data!{" "}
-          </Text>
-        </Heading>
-      </Flex>
-    </Container>
+    <Flex
+      justifyContent={"center"}
+      alignItems={"center"}
+      height={"50%"}
+      flexDirection={"column"}
+    >
+      <Heading fontWeight={600} fontSize={"xl"}>
+        <Text as={"span"} color={"#00B81D"}>
+          Please login to check the data!{" "}
+        </Text>
+      </Heading>
+    </Flex>
   );
 }

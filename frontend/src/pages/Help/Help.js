@@ -28,7 +28,6 @@ export default function Help() {
     setCurrentTab(tabMapping[hash] || "get-started");
   }, [hash]);
 
-  console.log("current tab is " + currentTab);
   return (
     <>
       <Header />

@@ -9,8 +9,7 @@ export default function Features() {
       headline: "Paws and pick health spots!",
       description:
         "Browse whisker-twitching health options that purr-fectly fit you",
-      image:
-        "goal_setting.png",
+      image: "goal_setting.png",
       id: "goal-setting",
     },
     {
@@ -18,8 +17,7 @@ export default function Features() {
       headline: "Tail-twitch to health!",
       description:
         "Purrfit will meow activity reminders while you’re gaming, just the way you like it.",
-      image:
-        "reminders.png",
+      image: "reminders.png",
       id: "reminders",
     },
     {
@@ -27,8 +25,7 @@ export default function Features() {
       headline: "Climb the kitty tower of health!",
       description:
         "Collect shiny badges and climb higher with every playful activity you do!",
-      image:
-        "progress_tracking.png",
+      image: "progress_tracking.png",
       id: "progress-tracking",
     },
   ];

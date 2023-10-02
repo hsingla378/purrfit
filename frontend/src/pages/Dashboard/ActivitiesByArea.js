@@ -77,13 +77,13 @@ export default function ActivitiesByArea() {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
         setActivitiesByArea(response.data.data.activityCount);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
-    setLoading(false);
   };
 
   useEffect(() => {

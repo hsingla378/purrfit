@@ -54,7 +54,6 @@ export default function Overview() {
     axios
       .request(config)
       .then((response) => {
-        console.log(response.data.data);
         setCurrentActivities(response.data.data.ranks.activities);
         setCurrentBadge(response.data.data.ranks.badge);
         setNextBadge(response.data.data.ranks.nextBadge);

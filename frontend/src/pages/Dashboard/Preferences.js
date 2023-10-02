@@ -72,20 +72,19 @@ export default function Preferences() {
     axios
       .request(config)
       .then((response) => {
-        console.log(response.data.data);
-        // console.log(response.data.data.preferences.goals);
         setPreferences(response.data.data.preferences.goals);
         setFrequency(response.data.data.preferences.frequency);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
 
     const preferencesLeftArray = allPreferences.filter((preference) => {
       return !preferences.includes(preference);
     });
     setPreferencesLeft(preferencesLeftArray);
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -119,7 +118,6 @@ export default function Preferences() {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
         toast({
           title: `Frequency set to ${value} minutes successfully`,
           status: "success",
@@ -159,7 +157,6 @@ export default function Preferences() {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
         fetchPreferences();
         toast({
           title: `Preference added successfully`,
@@ -199,7 +196,6 @@ export default function Preferences() {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
         fetchPreferences();
         toast({
           title: `Preference removed successfully`,
@@ -412,7 +408,6 @@ export default function Preferences() {
                       alignItems={"center"}
                       maxHeight={"200px"}
                     >
-                      {console.log("image", getImageURL(preference))}
                       <Image
                         src={getImageURL(preference)}
                         alt={""}

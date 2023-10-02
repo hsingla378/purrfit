@@ -50,12 +50,12 @@ export default function ActivityTracking() {
     axios
       .request(config)
       .then((response) => {
-        console.log(response.data.data);
         setActivityCount(() => {
           let sum = 0;
           for (let activity of response.data.data.activityCount) {
             sum += activity.count;
           }
+          setLoading(false);
           return sum;
         });
         // setActivityCount(response.data.data.activityCount.length);
@@ -63,7 +63,6 @@ export default function ActivityTracking() {
       .catch((error) => {
         console.log(error);
       });
-    setLoading(false);
   };
 
   useEffect(() => {

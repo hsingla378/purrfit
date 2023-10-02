@@ -106,13 +106,13 @@ export default function ActivitiesCompleted() {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data.data.history));
         setActivitesCompleted(response.data.data.history);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -121,7 +121,6 @@ export default function ActivitiesCompleted() {
 
   return (
     <>
-      {console.log("loading", loading)}
       {loading ? (
         <Loading />
       ) : !localStorage.getItem("accessToken") ? (

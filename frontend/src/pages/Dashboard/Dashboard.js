@@ -60,18 +60,17 @@ export default function Dashboard() {
     axios
       .request(config)
       .then((response) => {
-        console.log(response.data.data);
         setCurrentActivities(response.data.data.ranks.activities);
         setCurrentBadge(response.data.data.ranks.badge);
         setNextBadge(response.data.data.ranks.nextBadge);
         setGoals(response.data.data.preferences.goals);
         setFrequency(response.data.data.preferences.frequency);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
-
-    setLoading(false);
   };
 
   useEffect(() => {
