@@ -28,11 +28,14 @@ import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
 import "./Dashboard.css";
 import ActivitiesByArea from "./ActivitiesByArea";
 import ActivitiesCompleted from "./ActivitiesCompleted";
+import Loading from "../../components/Loading";
 
 export default function ActivityTracking() {
+  const [loading, setLoading] = useState(false);
   const [activityCount, setActivityCount] = useState(null);
 
   const fetchAcitivities = () => {
+    setLoading(true);
     const token = localStorage.getItem("accessToken");
 
     let config = {
@@ -60,6 +63,7 @@ export default function ActivityTracking() {
       .catch((error) => {
         console.log(error);
       });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -169,10 +173,12 @@ export default function ActivityTracking() {
           p={6}
           alignSelf={"stretch"}
         >
-          <Flex mb={6} justifyContent={"center"} mx={4} alignItems={"center"}>
-            {!localStorage.getItem("accessToken") ? (
-              <NotLoggenIn />
-            ) : (
+          {loading ? (
+            <Loading />
+          ) : !localStorage.getItem("accessToken") ? (
+            <NotLoggenIn />
+          ) : (
+            <Flex mb={6} justifyContent={"center"} mx={4} alignItems={"center"}>
               <Flex
                 flexDirection={"column"}
                 justifyContent={"center"}
@@ -199,8 +205,8 @@ export default function ActivityTracking() {
                   {activityCount}
                 </Flex>
               </Flex>
-            )}
-          </Flex>
+            </Flex>
+          )}
         </GridItem>
         <GridItem
           rowStart={6}
@@ -246,13 +252,10 @@ export default function ActivityTracking() {
             Activities by Area
           </Text>
           <Text fontSize={"md"}>Last 6 Months</Text>
-          {!localStorage.getItem("accessToken") ? (
-            <NotLoggenIn />
-          ) : (
-            <Flex justifyContent={"center"} alignItems={"center"} h={"80%"}>
-              <ActivitiesByArea />
-            </Flex>
-          )}
+          <Flex justifyContent={"center"} alignItems={"center"} h={"80%"}>
+            <ActivitiesByArea />
+          </Flex>
+
           {/* <Button
             borderColor={"#00B81D"}
             color={"#00B81D"}

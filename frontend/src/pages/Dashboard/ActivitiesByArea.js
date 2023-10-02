@@ -3,10 +3,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { Box } from "@chakra-ui/react";
 import axios from "axios";
+import NotLoggenIn from "../../components/NotLoggenIn/NotLoggenIn";
+import Loading from "../../components/Loading";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function ActivitiesByArea() {
+  const [loading, setLoading] = useState(false);
   const [activitiesByArea, setActivitiesByArea] = useState([]);
 
   const options = {
@@ -27,7 +30,7 @@ export default function ActivitiesByArea() {
     labels: activitiesByArea.map((acitivity) => acitivity.goal),
     datasets: [
       {
-        label: "# of Votes",
+        label: "times",
         data: activitiesByArea.map((acitivity) => acitivity.count),
         backgroundColor: [
           "#00a91b",
@@ -59,6 +62,7 @@ export default function ActivitiesByArea() {
   };
 
   const fetchActivitiesByArea = () => {
+    setLoading(true);
     let token = localStorage.getItem("accessToken");
 
     let config = {
@@ -79,6 +83,7 @@ export default function ActivitiesByArea() {
       .catch((error) => {
         console.log(error);
       });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -86,9 +91,17 @@ export default function ActivitiesByArea() {
   }, []);
 
   return (
-    <Box maxW={"70%"}>
-      {" "}
-      <Pie data={data} options={options} />
-    </Box>
+    <>
+      {loading ? (
+        <Loading />
+      ) : !localStorage.getItem("accessToken") ? (
+        <NotLoggenIn />
+      ) : (
+        <Box maxW={"70%"}>
+          {" "}
+          <Pie data={data} options={options} />
+        </Box>
+      )}
+    </>
   );
 }

@@ -12,6 +12,8 @@ import {
 import { Line } from "react-chartjs-2";
 import { Box } from "@chakra-ui/react";
 import axios from "axios";
+import Loading from "../../components/Loading";
+import NotLoggenIn from "../../components/NotLoggenIn/NotLoggenIn";
 
 ChartJS.register(
   CategoryScale,
@@ -25,6 +27,7 @@ ChartJS.register(
 
 export default function ActivitiesCompleted() {
   const [activitiesCompleted, setActivitesCompleted] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const options = {
     responsive: true,
@@ -72,7 +75,6 @@ export default function ActivitiesCompleted() {
   };
 
   const labels = activitiesCompleted.map((activity) => activity.date);
-
   const data = {
     labels,
     datasets: [
@@ -89,6 +91,7 @@ export default function ActivitiesCompleted() {
   };
 
   const fetchActivitiesByArea = () => {
+    setLoading(true);
     let token = localStorage.getItem("accessToken");
 
     let config = {
@@ -109,6 +112,7 @@ export default function ActivitiesCompleted() {
       .catch((error) => {
         console.log(error);
       });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -116,8 +120,17 @@ export default function ActivitiesCompleted() {
   }, []);
 
   return (
-    <Box maxW={"3xl"}>
-      <Line data={data} options={options} />
-    </Box>
+    <>
+      {console.log("loading", loading)}
+      {loading ? (
+        <Loading />
+      ) : !localStorage.getItem("accessToken") ? (
+        <NotLoggenIn />
+      ) : (
+        <Box maxW={"3xl"}>
+          <Line data={data} options={options} />
+        </Box>
+      )}
+    </>
   );
 }

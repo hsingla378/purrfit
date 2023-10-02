@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import NotLoggenIn from "../../components/NotLoggenIn/NotLoggenIn";
+import Loading from "../../components/Loading";
 import {
   Box,
   Container,
@@ -28,11 +29,13 @@ import "./Dashboard.css";
 import axios from "axios";
 
 export default function Ranks() {
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("accessToken");
   const [currentBadge, setCurrentBadge] = useState({});
   const [badges, setBadges] = useState([]);
 
   const fetchRanks = () => {
+    setLoading(true);
     let data = "";
 
     let config = {
@@ -55,6 +58,7 @@ export default function Ranks() {
       .catch((error) => {
         console.log(error);
       });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -166,37 +170,38 @@ export default function Ranks() {
           color={"gray.200"}
           alignSelf={"stretch"}
         >
-          {!localStorage.getItem("accessToken") ? (
+          {loading ? (
+            <Loading />
+          ) : !localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
           ) : (
-            <>
-              <Flex
-                // borderTop={{ base: "solid", md: "none" }}
-                // borderBottom={{ base: "solid", md: "none" }}
-                flexDirection={"column"}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                <Text color={"gray.100"} fontSize={"lg"}>
-                  Current Rank
+            <Flex
+              // borderTop={{ base: "solid", md: "none" }}
+              // borderBottom={{ base: "solid", md: "none" }}
+              flexDirection={"column"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <Text color={"gray.100"} fontSize={"lg"}>
+                Current Rank
+              </Text>
+              <Image
+                src={currentBadge.url}
+                my={3}
+                boxShadow={"2xl"}
+                rounded={"full"}
+                w={"150px"}
+              ></Image>
+              <Text as={"b"} fontSize={"2xl"}>
+                {currentBadge.name}
+              </Text>
+              <Flex gap={1} my={4}>
+                <Text as={"b"}>{currentBadge.activites}</Text>
+                <Text>
+                  {currentBadge.activites > 0 ? "activities" : "activity"}
                 </Text>
-                <Image
-                  src={currentBadge.url}
-                  my={3}
-                  boxShadow={"2xl"}
-                  rounded={"full"}
-                  w={"150px"}
-                ></Image>
-                <Text as={"b"} fontSize={"2xl"}>
-                  {currentBadge.name}
-                </Text>
-                <Flex gap={1} my={4}>
-                  <Text as={"b"}>{currentBadge.activites}</Text>
-                  <Text>
-                    {currentBadge.activites > 0 ? "activities" : "activity"}
-                  </Text>
-                </Flex>
-                {/* <Button
+              </Flex>
+              {/* <Button
               borderColor={"#00B81D"}
               color={"#00B81D"}
               variant="outline"
@@ -204,8 +209,7 @@ export default function Ranks() {
             >
               Share
             </Button> */}
-              </Flex>
-            </>
+            </Flex>
           )}
         </GridItem>
 
@@ -221,7 +225,9 @@ export default function Ranks() {
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Ranks
           </Text>
-          {!localStorage.getItem("accessToken") ? (
+          {loading ? (
+            <Loading />
+          ) : !localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
           ) : (
             <Flex

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import NotLoggenIn from "../../components/NotLoggenIn/NotLoggenIn";
+import Loading from "../../components/Loading";
 import axios from "axios";
 
 import {
@@ -49,6 +50,7 @@ export default function Preferences() {
   // ]);
   const frequencies = [1, 30, 60, 90, 120];
   const token = localStorage.getItem("accessToken");
+  const [loading, setLoading] = useState(false);
   const [preferences, setPreferences] = useState([]);
   const [frequency, setFrequency] = useState(null);
   const [preferencesLeft, setPreferencesLeft] = useState([]);
@@ -57,6 +59,7 @@ export default function Preferences() {
   const toast = useToast();
 
   const fetchPreferences = () => {
+    setLoading(true);
     let config = {
       method: "get",
       maxBodyLength: Infinity,
@@ -82,6 +85,7 @@ export default function Preferences() {
       return !preferences.includes(preference);
     });
     setPreferencesLeft(preferencesLeftArray);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -96,6 +100,7 @@ export default function Preferences() {
   // }, []);
 
   const changeFrequency = (value) => {
+    // setLoading(true)
     let data = JSON.stringify({
       frequency: value,
     });
@@ -130,9 +135,11 @@ export default function Preferences() {
         });
         console.log(error);
       });
+    // setLoading(false);
   };
 
   const addPreference = (value) => {
+    // setLoading(true)
     const token = localStorage.getItem("accessToken");
     let data = JSON.stringify({
       goals: [...preferences, value],
@@ -163,10 +170,11 @@ export default function Preferences() {
       .catch((error) => {
         console.log(error);
       });
+    // setLoading(false)
   };
 
   const deletePreference = (value) => {
-    console.log(value);
+    // setLoading(true);
     const token = localStorage.getItem("accessToken");
     let updatedPreferences = [...preferences];
     const index = updatedPreferences.indexOf(value);
@@ -202,6 +210,7 @@ export default function Preferences() {
       .catch((error) => {
         console.log(error);
       });
+    // setLoading(false);
   };
 
   const allPreferences = [
@@ -350,7 +359,9 @@ export default function Preferences() {
           p={6}
           alignSelf={"stretch"}
         >
-          {!localStorage.getItem("accessToken") ? (
+          {loading ? (
+            <Loading />
+          ) : !localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
           ) : (
             <>

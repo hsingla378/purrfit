@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import NotLoggenIn from "../../components/NotLoggenIn/NotLoggenIn";
+import Loading from "../../components/Loading";
 
 import {
   Box,
@@ -23,6 +24,7 @@ import {
   SkeletonCircle,
   SkeletonText,
   Stack,
+  Spinner,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, LinkProps } from "@chakra-ui/react";
@@ -44,6 +46,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false);
 
   const fetchOverview = () => {
+    setLoading(true);
     const token = localStorage.getItem("accessToken");
     let config = {
       method: "get",
@@ -53,7 +56,6 @@ export default function Dashboard() {
         Authorization: `Bearer ${token}`,
       },
     };
-    setLoading(true);
 
     axios
       .request(config)
@@ -206,94 +208,101 @@ export default function Dashboard() {
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Ranks
           </Text>
-          <Flex
-            mb={6}
-            flexDirection={{ base: "column", md: "row" }}
-            gap={{ base: "3rem", md: "" }}
-            justifyContent={"space-between"}
-            mx={4}
-            alignItems={"stretch"}
-          >
-            {!localStorage.getItem("accessToken") ? (
-              <NotLoggenIn />
-            ) : (
-              <>
-                <Flex
-                  flexDirection={"column"}
-                  justifyContent={"space-between"}
-                  alignItems={"center"}
-                >
-                  <Text>Activities Completed</Text>
-                  <Flex
-                    className="activities-count"
-                    fontSize={"4xl"}
-                    border={"2px solid #00B81D"}
-                    p={2}
-                    rounded={"full"}
-                    width={"80px"}
-                    height={"80px"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    fontWeight={"600"}
-                    my={3}
-                    color={"#00B81D"}
-                    boxShadow={"2xl"}
-                  >
-                    {currentActivities}
-                  </Flex>
-                  <Flex gap={1}>
-                    <Text as={"b"}>
-                      {nextBadge.activites - currentBadge.activites}
-                    </Text>
-                    <Text>more to next rank</Text>
-                  </Flex>
-                </Flex>
-                <Divider display={{ base: "block", md: "none" }} />
-                <Flex
-                  // borderTop={{ base: "solid", md: "none" }}
-                  // borderBottom={{ base: "solid", md: "none" }}
-                  flexDirection={"column"}
-                  justifyContent={"space-between"}
-                  alignItems={"center"}
-                >
-                  <Text>Current Rank</Text>
-                  <Image
-                    src={currentBadge.url}
-                    my={3}
-                    boxShadow={"2xl"}
-                    rounded={"full"}
-                    w={"80px"}
-                  ></Image>
-                  <Text as={"b"}>{currentBadge.name}</Text>
-                  <Flex gap={1}>
-                    <Text as={"b"}>{currentBadge.activites}</Text>
-                    <Text>activities</Text>
-                  </Flex>
-                </Flex>
-                <Divider display={{ base: "block", md: "none" }} />
 
+          {loading ? (
+            <Flex
+              justifyContent={"center"}
+              alignItems={"center"}
+              height={"50%"}
+            >
+              <Loading />
+            </Flex>
+          ) : !localStorage.getItem("accessToken") ? (
+            <NotLoggenIn />
+          ) : (
+            <Flex
+              mb={6}
+              flexDirection={{ base: "column", md: "row" }}
+              gap={{ base: "3rem", md: "" }}
+              justifyContent={"space-between"}
+              mx={4}
+              alignItems={"stretch"}
+            >
+              <Flex
+                flexDirection={"column"}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+              >
+                <Text>Activities Completed</Text>
                 <Flex
-                  flexDirection={"column"}
-                  justifyContent={"space-between"}
+                  className="activities-count"
+                  fontSize={"4xl"}
+                  border={"2px solid #00B81D"}
+                  p={2}
+                  rounded={"full"}
+                  width={"80px"}
+                  height={"80px"}
+                  justifyContent={"center"}
                   alignItems={"center"}
+                  fontWeight={"600"}
+                  my={3}
+                  color={"#00B81D"}
+                  boxShadow={"2xl"}
                 >
-                  <Text>Next Rank</Text>
-                  <Image
-                    src="gold.png"
-                    my={3}
-                    boxShadow={"2xl"}
-                    rounded={"full"}
-                    w={"80px"}
-                  ></Image>
-                  <Text as={"b"}>{nextBadge.name}</Text>
-                  <Flex gap={1}>
-                    <Text as={"b"}>{nextBadge.activites}</Text>
-                    <Text>activities</Text>
-                  </Flex>
+                  {currentActivities}
                 </Flex>
-              </>
-            )}
-          </Flex>
+                <Flex gap={1}>
+                  <Text as={"b"}>
+                    {nextBadge.activites - currentActivities}
+                  </Text>
+                  <Text>more to next rank</Text>
+                </Flex>
+              </Flex>
+              <Divider display={{ base: "block", md: "none" }} />
+              <Flex
+                // borderTop={{ base: "solid", md: "none" }}
+                // borderBottom={{ base: "solid", md: "none" }}
+                flexDirection={"column"}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+              >
+                <Text>Current Rank</Text>
+                <Image
+                  src={currentBadge.url}
+                  my={3}
+                  boxShadow={"2xl"}
+                  rounded={"full"}
+                  w={"80px"}
+                ></Image>
+                <Text as={"b"}>{currentBadge.name}</Text>
+                <Flex gap={1}>
+                  <Text as={"b"}>{currentBadge.activites}</Text>
+                  <Text>activities</Text>
+                </Flex>
+              </Flex>
+              <Divider display={{ base: "block", md: "none" }} />
+
+              <Flex
+                flexDirection={"column"}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+              >
+                <Text>Next Rank</Text>
+                <Image
+                  src="gold.png"
+                  my={3}
+                  boxShadow={"2xl"}
+                  rounded={"full"}
+                  w={"80px"}
+                ></Image>
+                <Text as={"b"}>{nextBadge.name}</Text>
+                <Flex gap={1}>
+                  <Text as={"b"}>{nextBadge.activites}</Text>
+                  <Text>activities</Text>
+                </Flex>
+              </Flex>
+            </Flex>
+          )}
         </GridItem>
         <GridItem
           rowStart={7}
@@ -307,11 +316,7 @@ export default function Dashboard() {
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Activity History
           </Text>
-          {!localStorage.getItem("accessToken") ? (
-            <NotLoggenIn />
-          ) : (
-            <ActivitiesCompleted />
-          )}
+          <ActivitiesCompleted />
         </GridItem>
         <GridItem
           rowStart={7}
@@ -325,7 +330,9 @@ export default function Dashboard() {
           <Text fontSize={"xl"} fontWeight={600} mb={6}>
             Preferences
           </Text>
-          {!localStorage.getItem("accessToken") ? (
+          {loading ? (
+            <Loading />
+          ) : !localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
           ) : (
             <>
