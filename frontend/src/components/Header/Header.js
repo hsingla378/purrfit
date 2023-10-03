@@ -99,7 +99,7 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
     {
       label: "Login",
       className: "login-btn",
-      href: "#",
+      href: "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify",
     },
   ];
 
@@ -249,110 +249,33 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
       <Stack
         spacing={4}
         onClick={children && onToggle}
-        textAlign={"left"}
-        fontSize={"lg"}
+        // textAlign={"left"}
+        fontSize={"md"}
       >
-        <Flex
-          my={4}
-          as="a"
-          // href={href ?? "#"}
-          // justifyContent="space-between"
-          alignItems="center"
-          _hover={{
-            textDecoration: "none",
-          }}
-          gap={2}
-          paddingLeft={4}
-        >
-          <Text
-            fontWeight={600}
-            color={useColorModeValue("gray.600", "gray.200")}
+        <HashLink to={href ?? "#"}>
+          <Flex
+            my={4}
+            // as="a"
+            // href={href ?? "#"}
+            justifyContent="center"
+            // alignItems="center"
+            _hover={{
+              textDecoration: "none",
+            }}
+            gap={2}
+            paddingLeft={4}
           >
-            {label}
-          </Text>
-          {children && (
-            <Icon
-              as={ChevronDownIcon}
-              transition={"all .25s ease-in-out"}
-              transform={isOpen ? "rotate(180deg)" : ""}
-              w={6}
-              h={6}
-            />
-          )}
-        </Flex>
-
-        <Collapse
-          in={isOpen}
-          animateOpacity
-          style={{ marginTop: "0!important" }}
-        >
-          <Stack
-            mt={2}
-            pl={4}
-            borderLeft={1}
-            borderStyle={"solid"}
-            borderColor={useColorModeValue("gray.200", "gray.700")}
-            align={"start"}
-          >
-            {children &&
-              children.map((child) => (
-                <HashLink to={child.href} key={child.label}>
-                  <Box as="a" py={2}>
-                    {child.label}
-                  </Box>
-                </HashLink>
-              ))}
-            {!!localStorage.getItem("accessToken") ? (
-              <Button
-                as={"a"}
-                display={{ base: "none", md: "inline-flex" }}
-                fontSize={"1rem"}
-                fontWeight={"bold"}
-                color={"white"}
-                bg={"#00B81D"}
-                href={
-                  "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify"
-                }
-                // _hover={{
-                //   bg: "#00B81D",
-                // }}
-                rounded={"xl"}
-                p={6}
-                _hover={{
-                  bg: "rgba(0, 184, 29, .7)",
-                }}
-                px={8}
-              >
-                {" "}
-                Login
-              </Button>
-            ) : (
-              <Button
-                as={"a"}
-                display={{ base: "none", md: "inline-flex" }}
-                fontSize={"1rem"}
-                fontWeight={"bold"}
-                color={"white"}
-                bg={"#00B81D"}
-                href={
-                  "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify"
-                }
-                // _hover={{
-                //   bg: "#00B81D",
-                // }}
-                rounded={"xl"}
-                p={6}
-                _hover={{
-                  bg: "rgba(0, 184, 29, .7)",
-                }}
-                px={8}
-              >
-                {" "}
-                Logout
-              </Button>
-            )}
-          </Stack>
-        </Collapse>
+            <Text
+              fontWeight={600}
+              color={useColorModeValue("gray.600", "gray.200")}
+              _hover={{
+                color: "#00B81D",
+              }}
+            >
+              {label}
+            </Text>
+          </Flex>
+        </HashLink>
       </Stack>
     );
   };
