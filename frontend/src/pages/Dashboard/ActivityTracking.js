@@ -63,6 +63,7 @@ export default function ActivityTracking() {
       .catch((error) => {
         console.log(error);
       });
+      setLoading(false);
   };
 
   useEffect(() => {
