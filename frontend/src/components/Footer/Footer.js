@@ -30,7 +30,7 @@ export default function Footer() {
       mt={16}
       px={10}
       // position={"fixed"}
-      bottom={0}
+      // bottom={0}
       // w={"100%"}
     >
       <Container as={Stack} maxW={"5xl"} py={10}>
@@ -55,7 +55,7 @@ export default function Footer() {
             align={"flex-start"}
             fontSize={"lg"}
             fontWeight={500}
-            // mt={{ base: "2rem", md: "" }}
+            mt={{ base: "2rem", md: "0rem" }}
             flexDirection={{ base: "column", md: "row" }}
             alignItems={"center"}
             gap={"2rem"}

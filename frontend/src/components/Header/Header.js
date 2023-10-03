@@ -99,7 +99,7 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
     {
       label: "Login",
       className: "login-btn",
-      href: "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify",
+      href: "#",
     },
   ];
 
