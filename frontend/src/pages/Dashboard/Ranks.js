@@ -170,10 +170,10 @@ export default function Ranks() {
           color={"gray.200"}
           alignSelf={"stretch"}
         >
-          {loading ? (
-            <Loading />
-          ) : !localStorage.getItem("accessToken") ? (
+          {!localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
+          ) : loading ? (
+            <Loading />
           ) : (
             <Flex
               // borderTop={{ base: "solid", md: "none" }}
@@ -225,10 +225,10 @@ export default function Ranks() {
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Ranks
           </Text>
-          {loading ? (
-            <Loading />
-          ) : !localStorage.getItem("accessToken") ? (
+          {!localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
+          ) : loading ? (
+            <Loading />
           ) : (
             <Flex
               mb={6}

@@ -88,8 +88,8 @@ export default function Overview() {
       >
         <GridItem
           // rowSpan={{ base: 2, md: 2 }}
-          rowStart={1}
-          rowEnd={13}
+          rowStart={{ base: 1, md: 13 }}
+          rowEnd={{ base: 1, md: 13 }}
           colSpan={{ base: 14, md: 4 }}
           bg="#303130"
           rounded={"2xl"}
@@ -166,8 +166,8 @@ export default function Overview() {
           </Flex>
         </GridItem>
         <GridItem
-          rowStart={1}
-          rowEnd={7}
+          rowStart={{ base: 1, md: 1 }}
+          rowEnd={{ base: 13, md: 7 }}
           colSpan={{ base: 14, md: 10 }}
           bg="#303130"
           rounded={"2xl"}

@@ -71,6 +71,7 @@ export default function Dashboard() {
         console.log(error);
         setLoading(false);
       });
+      setLoading(false);
   };
 
   useEffect(() => {
@@ -208,16 +209,16 @@ export default function Dashboard() {
             Ranks
           </Text>
 
-          {loading ? (
+          {!localStorage.getItem("accessToken") ? (
             <Flex
               justifyContent={"center"}
               alignItems={"center"}
               height={"50%"}
             >
-              <Loading />
+              <NotLoggenIn />
             </Flex>
-          ) : !localStorage.getItem("accessToken") ? (
-            <NotLoggenIn />
+          ) : loading ? (
+            <Loading />
           ) : (
             <Flex
               mb={6}
@@ -329,10 +330,10 @@ export default function Dashboard() {
           <Text fontSize={"xl"} fontWeight={600} mb={6}>
             Preferences
           </Text>
-          {loading ? (
-            <Loading />
-          ) : !localStorage.getItem("accessToken") ? (
+          {!localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
+          ) : loading ? (
+            <Loading />
           ) : (
             <>
               <Box mb={4}>

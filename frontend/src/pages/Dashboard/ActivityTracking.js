@@ -63,7 +63,7 @@ export default function ActivityTracking() {
       .catch((error) => {
         console.log(error);
       });
-      setLoading(false);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -173,10 +173,10 @@ export default function ActivityTracking() {
           p={6}
           alignSelf={"stretch"}
         >
-          {loading ? (
-            <Loading />
-          ) : !localStorage.getItem("accessToken") ? (
+          {!localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
+          ) : loading ? (
+            <Loading />
           ) : (
             <Flex mb={6} justifyContent={"center"} mx={4} alignItems={"center"}>
               <Flex
@@ -230,13 +230,10 @@ export default function ActivityTracking() {
           >
             Share
           </Button> */}
-          {!localStorage.getItem("accessToken") ? (
-            <NotLoggenIn />
-          ) : (
-            <Flex justifyContent={"center"} alignItems={"center"} h={"80%"}>
-              <ActivitiesCompleted />
-            </Flex>
-          )}
+
+          <Flex justifyContent={"center"} alignItems={"center"} h={"80%"}>
+            <ActivitiesCompleted />
+          </Flex>
         </GridItem>
         <GridItem
           rowStart={6}

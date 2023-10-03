@@ -121,10 +121,10 @@ export default function ActivitiesCompleted() {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : !localStorage.getItem("accessToken") ? (
+      {!localStorage.getItem("accessToken") ? (
         <NotLoggenIn />
+      ) : loading ? (
+        <Loading />
       ) : (
         <Box maxW={"3xl"}>
           <Line data={data} options={options} />

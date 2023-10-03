@@ -250,7 +250,7 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
         spacing={4}
         onClick={children && onToggle}
         // textAlign={"left"}
-        fontSize={"md"}
+        fontSize={"lg"}
       >
         <HashLink to={href ?? "#"}>
           <Flex

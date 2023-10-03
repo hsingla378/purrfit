@@ -355,10 +355,10 @@ export default function Preferences() {
           p={6}
           alignSelf={"stretch"}
         >
-          {loading ? (
-            <Loading />
-          ) : !localStorage.getItem("accessToken") ? (
+          {!localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
+          ) : loading ? (
+            <Loading />
           ) : (
             <>
               <Select

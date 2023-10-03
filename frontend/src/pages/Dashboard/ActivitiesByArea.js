@@ -92,10 +92,10 @@ export default function ActivitiesByArea() {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : !localStorage.getItem("accessToken") ? (
+      {!localStorage.getItem("accessToken") ? (
         <NotLoggenIn />
+      ) : loading ? (
+        <Loading />
       ) : (
         <Box maxW={"70%"}>
           {" "}
