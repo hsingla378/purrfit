@@ -71,7 +71,7 @@ export default function Dashboard() {
         console.log(error);
         setLoading(false);
       });
-      setLoading(false);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -108,20 +108,22 @@ export default function Dashboard() {
       <Grid
         maxW={"5xl"}
         as={Container}
-        h="200px"
-        templateRows="repeat(12, 1fr)"
-        templateColumns="repeat(14, 1fr)"
+        // h="200px"
+        templateRows="1fr 1fr"
+        templateColumns={{ base: "1fr", md: "27% 1fr 1fr" }}
         gap={6}
-        height={"auto"}
+        // height={"auto"}
         alignItems={"start"}
         // maxHeight={"675px"}
         // overflow={"auto"}
       >
         <GridItem
           // rowSpan={{ base: 2, md: 2 }}
-          rowStart={1}
-          rowEnd={13}
-          colSpan={{ base: 14, md: 4 }}
+          rowStart={{ md: 1 }}
+          rowEnd={{ md: 3 }}
+          colStart={{ base: 1, md: 1 }}
+          colEnd={{ base: 4, md: 2 }}
+          // colSpan={{ base: 14, md: 4 }}
           bg="#303130"
           rounded={"2xl"}
           pb={6}
@@ -197,13 +199,16 @@ export default function Dashboard() {
           </Flex>
         </GridItem>
         <GridItem
-          rowStart={1}
-          rowEnd={7}
-          colSpan={{ base: 14, md: 10 }}
+          rowStart={{ md: 1 }}
+          rowEnd={{ md: 2 }}
+          colStart={{ base: 1, md: 2 }}
+          colEnd={{ base: 4, md: 4 }}
+          // colSpan={{ base: 14, md: 10 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Ranks
@@ -305,13 +310,16 @@ export default function Dashboard() {
           )}
         </GridItem>
         <GridItem
-          rowStart={7}
-          rowEnd={13}
-          colSpan={{ base: 14, md: 5 }}
+          rowStart={{ md: 2 }}
+          rowEnd={{ md: 3 }}
+          colStart={{ base: 1, md: 2 }}
+          colEnd={{ base: 4, md: 3 }}
+          // colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Activity History
@@ -319,13 +327,16 @@ export default function Dashboard() {
           <ActivitiesCompleted />
         </GridItem>
         <GridItem
-          rowStart={7}
-          rowEnd={13}
-          colSpan={{ base: 14, md: 5 }}
+          rowStart={{ md: 2 }}
+          rowEnd={{ md: 3 }}
+          colStart={{ base: 1, md: 3 }}
+          colEnd={{ base: 4, md: 4 }}
+          // colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={6}>
             Preferences

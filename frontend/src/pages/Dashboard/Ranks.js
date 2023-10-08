@@ -72,8 +72,8 @@ export default function Ranks() {
         maxW={"5xl"}
         as={Container}
         h="200px"
-        templateRows="repeat(12, 1fr)"
-        templateColumns="repeat(14, 1fr)"
+        templateRows="60% 1fr"
+        templateColumns={{ base: "1fr", md: "27% 1fr 1fr" }}
         gap={6}
         height={"auto"}
         alignItems={"start"}
@@ -81,13 +81,16 @@ export default function Ranks() {
         // overflow={"auto"}
       >
         <GridItem
-          rowStart={1}
-          rowEnd={13}
-          colSpan={{ base: 14, md: 4 }}
+          rowStart={{ md: 1 }}
+          rowEnd={{ md: 3 }}
+          // colSpan={{ base: 14, md: 4 }}
+          colStart={{ base: 1, md: 1 }}
+          colEnd={{ base: 4, md: 2 }}
           bg="#303130"
           rounded={"2xl"}
           pb={6}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           <Box textAlign={"center"} p={6}>
             <Image
@@ -160,15 +163,18 @@ export default function Ranks() {
         </GridItem>
 
         <GridItem
-          rowStart={1}
-          rowEnd={8}
-          colSpan={{ base: 14, md: 10 }}
+          rowStart={{ md: 1 }}
+          rowEnd={{ md: 2 }}
+          colStart={{ base: 1, md: 2 }}
+          colEnd={{ base: 4, md: 4 }}
+          // colSpan={{ base: 14, md: 10 }}
           // bg="#303130"
           rounded={"2xl"}
           p={6}
           m={"auto"}
           color={"gray.200"}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           {!localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
@@ -214,13 +220,16 @@ export default function Ranks() {
         </GridItem>
 
         <GridItem
-          rowStart={8}
-          rowEnd={13}
-          colSpan={{ base: 14, md: 10 }}
+          rowStart={{ md: 2 }}
+          rowEnd={{ md: 3 }}
+          colStart={{ base: 1, md: 2 }}
+          colEnd={{ base: 4, md: 4 }}
+          // colSpan={{ base: 14, md: 10 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={10}>
             Ranks

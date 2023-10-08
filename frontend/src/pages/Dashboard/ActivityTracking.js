@@ -77,8 +77,8 @@ export default function ActivityTracking() {
         maxW={"5xl"}
         as={Container}
         h="200px"
-        templateRows="repeat(12, 1fr)"
-        templateColumns="repeat(14, 1fr)"
+        templateRows="1fr 1fr"
+        templateColumns={{ base: "1fr", md: "27% 1fr 1fr" }}
         gap={6}
         height={"auto"}
         alignItems={"start"}
@@ -86,10 +86,12 @@ export default function ActivityTracking() {
         // overflow={"auto"}
       >
         <GridItem
-          rowStart={1}
-          rowEnd={13}
+          rowStart={{ md: 1 }}
+          rowEnd={{ md: 3 }}
           // rowSpan={{ base: 2, md: 2 }}
-          colSpan={{ base: 14, md: 4 }}
+          colStart={{ base: 1, md: 1 }}
+          colEnd={{ base: 4, md: 2 }}
+          // colSpan={{ base: 14, md: 4 }}
           bg="#303130"
           rounded={"2xl"}
           pb={6}
@@ -165,13 +167,16 @@ export default function ActivityTracking() {
           </Flex>
         </GridItem>
         <GridItem
-          rowStart={1}
-          rowEnd={6}
-          colSpan={{ base: 14, md: 10 }}
+          rowStart={{ md: 1 }}
+          rowEnd={{ md: 2 }}
+          colStart={{ base: 1, md: 2 }}
+          colEnd={{ base: 4, md: 4 }}
+          // colSpan={{ base: 14, md: 10 }}
           // bg="#303130"
           rounded={"2xl"}
           p={6}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           {!localStorage.getItem("accessToken") ? (
             <NotLoggenIn />
@@ -209,14 +214,17 @@ export default function ActivityTracking() {
           )}
         </GridItem>
         <GridItem
-          rowStart={6}
-          rowEnd={13}
-          colSpan={{ base: 14, md: 5 }}
+          rowStart={{ md: 2 }}
+          rowEnd={{ md: 3 }}
+          colStart={{ base: 1, md: 2 }}
+          colEnd={{ base: 4, md: 3 }}
+          // colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
           alignSelf={"stretch"}
           textAlign={"center"}
+          minHeight={"200px"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={2}>
             Activities Completed
@@ -236,14 +244,17 @@ export default function ActivityTracking() {
           </Flex>
         </GridItem>
         <GridItem
-          rowStart={6}
-          rowEnd={13}
-          colSpan={{ base: 14, md: 5 }}
+          rowStart={{ md: 2 }}
+          rowEnd={{ md: 4 }}
+          colStart={{ base: 1, md: 3 }}
+          colEnd={{ base: 4, md: 4 }}
+          // colSpan={{ base: 14, md: 5 }}
           bg="#303130"
           rounded={"2xl"}
           p={6}
           textAlign={"center"}
           alignSelf={"stretch"}
+          minHeight={"200px"}
         >
           <Text fontSize={"xl"} fontWeight={600} mb={2}>
             Activities by Area
