@@ -319,12 +319,12 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
           display={{ base: "block", md: "block" }}
           spacing={6}
           textAlign={"right"}
-          marginRight={{ base: "-120px", md: "unset" }}
+          marginRight={{ base: "-100px", md: "unset" }}
         >
           {!localStorage.getItem("accessToken") ? (
             <Button
               as={"a"}
-              display={{ base: "none", md: "inline-flex" }}
+              display={{ base: "inline-flex", md: "inline-flex" }}
               fontSize={"1rem"}
               fontWeight={"bold"}
               color={"white"}
