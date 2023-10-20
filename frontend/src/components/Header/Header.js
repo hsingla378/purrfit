@@ -96,31 +96,16 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
       // ],
       href: "/help",
     },
-    {
-      label: "Login",
-      className: "login-btn",
-      href: "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify",
-    },
+    // {
+    //   label: "Login",
+    //   className: "login-btn",
+    //   href: "https://discord.com/api/oauth2/authorize?client_id=1149460240027365427&redirect_uri=https%3A%2F%2Fpurrfit-bot.vercel.app&response_type=code&scope=identify",
+    // },
   ];
-
-  const handleLinkClick = (event, href) => {
-    event.preventDefault();
-
-    // scrollToSection(href);
-  };
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   const DesktopNav = () => {
     const linkColor = useColorModeValue("gray.600", "gray.200");
     const linkHoverColor = useColorModeValue("gray.800", "white");
-    const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
     return (
       <Stack direction={"row"} spacing={4} maxW={"5xl"}>
@@ -347,8 +332,9 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
-          display={{ base: "none", md: "block" }}
+          display={{ base: "block", md: "block" }}
           spacing={6}
+          textAlign={"right"}
         >
           {!localStorage.getItem("accessToken") ? (
             <Button
@@ -376,7 +362,7 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
             </Button>
           ) : (
             <Button
-              display={{ base: "none", md: "inline-flex" }}
+              display={{ base: "inline-flex", md: "inline-flex" }}
               fontSize={"1rem"}
               fontWeight={"bold"}
               color={"white"}
