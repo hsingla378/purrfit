@@ -277,7 +277,7 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
     <Box
       py={3}
       // style={{ boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)" }}
-      maxW={{ base: "90%", md: "6xl" }}
+      maxW={{ base: "100%", md: "6xl" }}
       m={"auto"}
       mb={20}
       mt={6}
@@ -312,22 +312,6 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
             <DesktopNav />
           </Flex>
         </Flex>
-        <Flex
-          flex={{ base: 1, md: "auto" }}
-          // mr={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
-          justifyContent={"end"}
-        >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
-        </Flex>
-
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
@@ -335,6 +319,7 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
           display={{ base: "block", md: "block" }}
           spacing={6}
           textAlign={"right"}
+          marginRight={{ base: "-120px", md: "unset" }}
         >
           {!localStorage.getItem("accessToken") ? (
             <Button
@@ -382,6 +367,21 @@ export default function Header({ isLoggedin, setIsLoggedin }) {
             </Button>
           )}
         </Stack>
+        <Flex
+          flex={{ base: 1, md: "auto" }}
+          // mr={{ base: -2 }}
+          display={{ base: "flex", md: "none" }}
+          justifyContent={"end"}
+        >
+          <IconButton
+            onClick={onToggle}
+            icon={
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+            }
+            variant={"ghost"}
+            aria-label={"Toggle Navigation"}
+          />
+        </Flex>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
